@@ -141,6 +141,9 @@
     <ClInclude Include="base_ID3D11View.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="base_IUnknown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="impl_ID3D11Asynchronous.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -265,6 +268,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="impl_IUnknown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="impl_ROOT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="create_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -398,6 +407,9 @@
     <ClCompile Include="base_ID3D11View.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="base_IUnknown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="impl_ID3D11Asynchronous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -522,6 +534,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="impl_IUnknown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="create_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

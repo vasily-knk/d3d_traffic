@@ -9,19 +9,24 @@ object Regexes extends App {
     pattern.replaceAllIn(s, "")
   }
 
-  val pattern = "MIDL_INTERFACE[^\\}]+\\}".r
+  def parseFile(filename: String) = {
+    val pattern = "MIDL_INTERFACE[^\\}]+\\}".r
+    val srcText = Source.fromFile(filename).mkString
+    val p = new ParserImpl
+    val ifs = (pattern findAllIn srcText)
+      .map(stripComments)
+      .map(p.parse1)
+      .toList
 
-  val srcText = Source.fromFile("d3d11.h").mkString
+    ifs
+  }
 
-  val p = new ParserImpl
-
-  val ifs = (pattern findAllIn srcText)
-    .map(stripComments)
-    .map(p.parse1)
-    .toList
-
+  val files = List("d3d11.h", "iunknown.h")
+  val ifs = files.flatMap(parseFile)
   val dir = "../test_app"
+  //val dir = "out_files"
 
-  new AllGen(dir, true).generate(ifs)
+  val generateImpls = false
 
+  new AllGen(dir, generateImpls).generate(ifs)
 }

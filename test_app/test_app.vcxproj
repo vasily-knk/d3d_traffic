@@ -119,6 +119,8 @@
     <ClInclude Include="base_ID3D11VideoProcessorInputView.h" />
     <ClInclude Include="base_ID3D11VideoProcessorOutputView.h" />
     <ClInclude Include="base_ID3D11View.h" />
+    <ClInclude Include="base_IUnknown.h" />
+    <ClInclude Include="create_impl.h" />
     <ClInclude Include="impl_ID3D11Asynchronous.h" />
     <ClInclude Include="impl_ID3D11AuthenticatedChannel.h" />
     <ClInclude Include="impl_ID3D11BlendState.h" />
@@ -161,6 +163,7 @@
     <ClInclude Include="impl_ID3D11VideoProcessorOutputView.h" />
     <ClInclude Include="impl_ID3D11View.h" />
     <ClInclude Include="impl_IUnknown.h" />
+    <ClInclude Include="impl_ROOT.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +208,8 @@
     <ClCompile Include="base_ID3D11VideoProcessorInputView.cpp" />
     <ClCompile Include="base_ID3D11VideoProcessorOutputView.cpp" />
     <ClCompile Include="base_ID3D11View.cpp" />
+    <ClCompile Include="base_IUnknown.cpp" />
+    <ClCompile Include="create_impl.cpp" />
     <ClCompile Include="impl_ID3D11Asynchronous.cpp" />
     <ClCompile Include="impl_ID3D11AuthenticatedChannel.cpp" />
     <ClCompile Include="impl_ID3D11BlendState.cpp" />

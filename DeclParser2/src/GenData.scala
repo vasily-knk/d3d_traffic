@@ -44,6 +44,12 @@ case class GenData(dir: String) {
     getFullPath(getImplCppFilename(name))
   }
 
+  val createHeaderFilename = "create_impl.h"
+  val createCppFilename = "create_impl.cpp"
+
+  val createHeaderPath = getFullPath(createHeaderFilename)
+  val createCppPath = getFullPath(createCppFilename)
+
   private def getFullPath(name: String) = {
     new File(dir, name).getPath
   }

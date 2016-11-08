@@ -9,20 +9,26 @@ case class BaseHeaderGen(dir: String) {
   val genData = new GenData(dir)
 
   def generate(interfaces: List[Interface]): Unit = {
-    interfaces.foreach(processInterface)
+    val parentWalker = new ParentWalker(interfaces)
+
+    interfaces.foreach(i => processInterface(i, parentWalker))
+  }
+
+  private def methodDecl(m: Method) = {
+    s"${m.retType} STDMETHODCALLTYPE ${m.name}(${m.args.mkString(", ")}) override;"
   }
 
   private def getBody(i: Interface): String = {
-    val newline = s"$EOL    "
-
-    def methodDecl(m: Method) = {
-      s"${m.retType} STDMETHODCALLTYPE ${m.name}(${m.args.mkString(", ")})"
-    }
-
-    i.methods.map(m => s"${methodDecl(m)} override;").mkString(newline)
+    i.methods.map(methodDecl).mkString(s"$EOL    ")
   }
 
-  private def processInterface(i: Interface): Unit = {
+  private def parentMethodsBody(i: Interface, parentWalker: ParentWalker): String = {
+    val parentMethods = parentWalker.getParentMethods(i)
+
+    parentMethods.map(methodDecl).mkString(s"$EOL    ")
+  }
+
+  private def processInterface(i: Interface, parentWalker: ParentWalker): Unit = {
     val filename = genData.getBaseHeaderPath(i.name)
 
     val pw = new PrintWriter(new File(filename))
@@ -42,6 +48,13 @@ case class BaseHeaderGen(dir: String) {
         |    explicit $baseName(${i.name} *impl);
         |
         |    ${getBody(i)}
+        |
+        |    // parent methods
+        |public:
+        |    ${parentMethodsBody(i, parentWalker)}
+        |
+        |public:
+        |    ${i.name} *impl() const;
         |
         |private:
         |    ${i.name} *impl_;

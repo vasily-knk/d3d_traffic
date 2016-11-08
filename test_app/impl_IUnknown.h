@@ -1,16 +1,10 @@
 #pragma once
 
+#include "base_IUnknown.h"
+
 struct impl_IUnknown
-    : IUnknown
+    : base_IUnknown
 {
-    virtual ~impl_IUnknown();
-
     explicit impl_IUnknown(IUnknown *impl);
-
-    HRESULT STDMETHODCALLTYPE QueryInterface(const IID& riid, void** ppvObject) override;
-    ULONG STDMETHODCALLTYPE AddRef() override;
-    ULONG STDMETHODCALLTYPE Release() override;
-
-private:
-    IUnknown *impl_;
 };
+      
