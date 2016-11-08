@@ -6,17 +6,10 @@ import scala.compat.Platform.EOL
   * Created by vasya on 08.11.2016.
   */
 case class BaseHeaderGen(dir: String) {
+  val genData = new GenData(dir)
 
   def generate(interfaces: List[Interface]): Unit = {
     interfaces.foreach(processInterface)
-  }
-
-  private def getFilename(i: Interface) = {
-    new File(dir, getBaseName(i.name) + ".h").getPath
-  }
-
-  private def getBaseName(name: String) = {
-    "base_" + name
   }
 
   private def getBody(i: Interface): String = {
@@ -30,21 +23,23 @@ case class BaseHeaderGen(dir: String) {
   }
 
   private def processInterface(i: Interface): Unit = {
-    val filename = getFilename(i)
+    val filename = genData.getBaseHeaderPath(i.name)
 
     val pw = new PrintWriter(new File(filename))
 
-    val baseName = getBaseName(i.name)
-    val parentName: String = getBaseName(i.parentName)
+    val baseName = genData.getBaseName(i.name)
+    val parentName = genData.getImplName(i.parentName)
 
     pw.write(
       s"""#pragma once
+        |
+        |#include "${genData.getImplHeaderFilename(i.parentName)}"
         |
         |struct $baseName
         |    : $parentName
         |    , ${i.name}
         |{
-        |    $baseName(${i.name} *impl);
+        |    explicit $baseName(${i.name} *impl);
         |
         |    ${getBody(i)}
         |

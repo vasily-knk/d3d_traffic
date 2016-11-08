@@ -12,3 +12,5 @@ using std::pair;
 using boost::optional;
 
 #include <boost/type_traits.hpp>
+
+#include <d3d11.h>

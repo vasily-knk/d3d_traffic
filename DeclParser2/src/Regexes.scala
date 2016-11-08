@@ -20,9 +20,8 @@ object Regexes extends App {
     .map(p.parse1)
     .toList
 
-  val dir = "out_files"
+  val dir = "../test_app"
 
-  new BaseFwdGen(dir).generate(ifs)
-  new BaseHeaderGen(dir).generate(ifs)
-  new BaseCppGen(dir).generate(ifs)
+  new AllGen(dir, true).generate(ifs)
+
 }
