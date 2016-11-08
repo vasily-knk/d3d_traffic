@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.runtime.regexp.joni.Regex
-
 import scala.io.Source
 
 /**
@@ -22,14 +20,9 @@ object Regexes extends App {
     .map(p.parse1)
     .toList
 
-  def methodAnnotations(m: Method) = m.args.flatMap(arg => arg.annotation)
-  def interfaceAnnotations(i: Interface) = i.methods.flatMap(methodAnnotations)
+  val dir = "out_files"
 
-
-  val anns = ifs.flatMap(interfaceAnnotations).map(annot => annot.name).distinct
-
-
-
-  val aaa = 3
-
+  new BaseFwdGen(dir).generate(ifs)
+  new BaseHeaderGen(dir).generate(ifs)
+  new BaseCppGen(dir).generate(ifs)
 }

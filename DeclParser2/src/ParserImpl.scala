@@ -16,7 +16,7 @@ case class Arg(name: String, argType: Type, annotation: Option[Annotation], arra
     })
 }
 case class Method(name: String, retType: Type, args: List[Arg]) {
-    override val toString = retType + name + "(" + args.mkString(", ") + ")"
+    override val toString = s"$retType $name(${args.mkString(", ")})"
 }
 case class Interface(name: String, parentName: String, methods: List[Method])
 case class Annotation(name: String, expr: Option[String])
