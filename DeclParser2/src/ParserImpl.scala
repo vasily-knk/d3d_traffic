@@ -54,7 +54,7 @@ class ParserImpl extends JavaTokenParsers with InterfaceParser {
     def argType    : Parser[Type        ] = argTypeCore ~ rep(argTypePtr) ^^ { case Type(name, isConst, List()) ~ ptrs => Type(name, isConst, ptrs) }
     def argTypeCore: Parser[Type        ] = const ~ ident ~ const ^^ { case c1 ~ name ~ c2 => Type(name, c1 || c2, List()) }
     def argTypePtr : Parser[Ptr         ] = "*" ~> const ^^ { isConst => Ptr(isConst)}
-    def const      : Parser[Boolean     ] = ("const"?) ^^ { case o => !o.isEmpty }
+    def const      : Parser[Boolean     ] = ("const"?) ^^ { case o => o.isDefined }
 
     def annotation : Parser[Annotation] = annotationType ~ (("(" ~> annotationExpr <~ ")")?) ^^
         { case AnnotationType(name) ~ expr => Annotation(name, expr) }

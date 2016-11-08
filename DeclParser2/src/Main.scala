@@ -9,12 +9,12 @@ object Main extends App {
         ("proxy.h", new ProxyHeaderGen)
     )
 
-    tasks.foreach { case (filename, generator) => {
+    tasks.foreach { case (filename, generator) =>
         val text = generator.generate(interfaces)
 
         val pw = new PrintWriter(new File(filename))
         pw.print(text)
         pw.close()
-    }}
+    }
 
 }

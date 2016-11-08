@@ -53,7 +53,7 @@ case class BaseCppGen(dir: String) {
         |
         |${i.name} *create_wrapper_${i.name}(${i.name} *impl)
         |{
-        |    return new ${implName}(impl);
+        |    return new $implName(impl);
         |}
         |
         |$baseName::$baseName(${i.name} *impl)
