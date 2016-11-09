@@ -23,8 +23,8 @@ object Regexes extends App {
 
   val files = List("d3d11.h", "iunknown.h")
   val ifs = files.flatMap(parseFile)
-  val dir = "../test_app"
-  //val dir = "out_files"
+  //val dir = "../test_app"
+  val dir = "out_files"
 
   val generateImpls = false
 
