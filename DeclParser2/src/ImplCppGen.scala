@@ -23,6 +23,17 @@ case class ImplCppGen(dir: String)  {
         |
         |#include "${genData.getImplHeaderFilename(i.name)}"
         |
+        |${i.name} *create_wrapper_inner(${i.name} *impl)
+        |{
+        |    return new $implName(impl);
+        |}
+        |
+        |${i.name} *unwrap_inner(${i.name} *wrapper)
+        |{
+        |    auto *cast_wrapper = dynamic_cast<$implName *>(wrapper);
+        |    return cast_wrapper->impl();
+        |}
+        |
         |$implName::$implName(${i.name} *impl)
         |    : $baseName(impl)
         |{
