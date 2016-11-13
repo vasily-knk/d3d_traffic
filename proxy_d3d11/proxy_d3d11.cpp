@@ -22,25 +22,46 @@ PFN_D3D11_CREATE_DEVICE get_create_device_fn()
 }
 
 HRESULT WINAPI D3D11CreateDevice(
-    IDXGIAdapter* pAdapter,
+    _In_opt_ IDXGIAdapter* pAdapter,
     D3D_DRIVER_TYPE DriverType,
     HMODULE Software,
     UINT Flags,
-    CONST D3D_FEATURE_LEVEL* pFeatureLevels,
+    _In_reads_opt_( FeatureLevels ) CONST D3D_FEATURE_LEVEL* pFeatureLevels,
     UINT FeatureLevels,
     UINT SDKVersion,
-    ID3D11Device** ppDevice,
-    D3D_FEATURE_LEVEL* pFeatureLevel,
-    ID3D11DeviceContext** ppImmediateContext)
+    _Out_opt_ ID3D11Device** ppDevice,
+    _Out_opt_ D3D_FEATURE_LEVEL* pFeatureLevel,
+    _Out_opt_ ID3D11DeviceContext** ppImmediateContext )
 {
-    PFN_D3D11_CREATE_DEVICE f = get_create_device_fn();
+    auto f = get_d3d11_lib().get_function<PFN_D3D11_CREATE_DEVICE>("D3D11CreateDevice");
    
-    auto result = f(pAdapter, DriverType, Software, Flags, pFeatureLevels, FeatureLevels, SDKVersion, ppDevice, pFeatureLevel, ppImmediateContext);
+    auto result_ = f(pAdapter, DriverType, Software, Flags, pFeatureLevels, FeatureLevels, SDKVersion, ppDevice, pFeatureLevel, ppImmediateContext);
     if (ppDevice != nullptr) *ppDevice = wrap(*ppDevice);
     if (ppImmediateContext != nullptr) *ppImmediateContext = wrap(*ppImmediateContext);
-
-    return result;
+    return result_;
 }
+
+HRESULT WINAPI D3D11CreateDeviceAndSwapChain(
+    _In_opt_ IDXGIAdapter* pAdapter,
+    D3D_DRIVER_TYPE DriverType,
+    HMODULE Software,
+    UINT Flags,
+    _In_reads_opt_( FeatureLevels ) CONST D3D_FEATURE_LEVEL* pFeatureLevels,
+    UINT FeatureLevels,
+    UINT SDKVersion,
+    _In_opt_ CONST DXGI_SWAP_CHAIN_DESC* pSwapChainDesc,
+    _Out_opt_ IDXGISwapChain** ppSwapChain,
+    _Out_opt_ ID3D11Device** ppDevice,
+    _Out_opt_ D3D_FEATURE_LEVEL* pFeatureLevel,
+    _Out_opt_ ID3D11DeviceContext** ppImmediateContext)
+{
+    auto f = get_d3d11_lib().get_function<PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN>("D3D11CreateDeviceAndSwapChain");
+    auto result_ = f(pAdapter, DriverType, Software, Flags, pFeatureLevels, FeatureLevels, SDKVersion, pSwapChainDesc, ppSwapChain, ppDevice, pFeatureLevel, ppImmediateContext);
+    if (ppDevice != nullptr) *ppDevice = wrap(*ppDevice);
+    if (ppImmediateContext != nullptr) *ppImmediateContext = wrap(*ppImmediateContext);
+    return result_;
+}
+
 
 HRESULT WINAPI D3D11CoreRegisterLayers(const void *unknown0, DWORD unknown1)
 {
