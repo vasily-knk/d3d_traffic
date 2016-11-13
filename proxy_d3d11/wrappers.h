@@ -48,3 +48,10 @@ void wrap_array(T *const ptr, size_t size)
     for (size_t i = 0; i < size; ++i)
         ptr[i] = wrap(ptr[i]);
 }
+
+
+template<typename T>
+bool check_magic(T const *ptr)
+{
+    return false;
+}

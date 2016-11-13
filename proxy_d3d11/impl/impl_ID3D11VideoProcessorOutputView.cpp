@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "../wrappers.h"
 
 #include "impl_ID3D11VideoProcessorOutputView.h"
 
@@ -9,8 +10,15 @@ ID3D11VideoProcessorOutputView *create_wrapper_inner(ID3D11VideoProcessorOutputV
 
 ID3D11VideoProcessorOutputView *unwrap_inner(ID3D11VideoProcessorOutputView *wrapper)
 {
-    auto *cast_wrapper = dynamic_cast<impl_ID3D11VideoProcessorOutputView *>(wrapper);
-    return cast_wrapper->impl();
+    if (check_magic(wrapper))
+    {
+        auto *cast_wrapper = static_cast<impl_ID3D11VideoProcessorOutputView *>(wrapper);
+        return cast_wrapper->impl();
+    }
+    else
+    {
+        return wrapper;
+    }
 }
 
 impl_ID3D11VideoProcessorOutputView::impl_ID3D11VideoProcessorOutputView(ID3D11VideoProcessorOutputView *impl)

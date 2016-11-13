@@ -20,6 +20,7 @@ case class ImplCppGen(dir: String)  {
 
     pw.write(
       s"""#include "stdafx.h"
+        |#include "../wrappers.h"
         |
         |#include "${genData.getImplHeaderFilename(i.name)}"
         |
@@ -30,8 +31,15 @@ case class ImplCppGen(dir: String)  {
         |
         |${i.name} *unwrap_inner(${i.name} *wrapper)
         |{
-        |    auto *cast_wrapper = dynamic_cast<$implName *>(wrapper);
-        |    return cast_wrapper->impl();
+        |    if (check_magic(wrapper))
+        |    {
+        |        auto *cast_wrapper = static_cast<$implName *>(wrapper);
+        |        return cast_wrapper->impl();
+        |    }
+        |    else
+        |    {
+        |        return wrapper;
+        |    }
         |}
         |
         |$implName::$implName(${i.name} *impl)

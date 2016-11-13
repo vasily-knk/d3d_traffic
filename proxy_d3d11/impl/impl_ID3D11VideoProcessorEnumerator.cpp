@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "../wrappers.h"
 
 #include "impl_ID3D11VideoProcessorEnumerator.h"
 
@@ -9,8 +10,15 @@ ID3D11VideoProcessorEnumerator *create_wrapper_inner(ID3D11VideoProcessorEnumera
 
 ID3D11VideoProcessorEnumerator *unwrap_inner(ID3D11VideoProcessorEnumerator *wrapper)
 {
-    auto *cast_wrapper = dynamic_cast<impl_ID3D11VideoProcessorEnumerator *>(wrapper);
-    return cast_wrapper->impl();
+    if (check_magic(wrapper))
+    {
+        auto *cast_wrapper = static_cast<impl_ID3D11VideoProcessorEnumerator *>(wrapper);
+        return cast_wrapper->impl();
+    }
+    else
+    {
+        return wrapper;
+    }
 }
 
 impl_ID3D11VideoProcessorEnumerator::impl_ID3D11VideoProcessorEnumerator(ID3D11VideoProcessorEnumerator *impl)
