@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11CryptoSession.h"
+#include "../wrappers.h"
 
 base_ID3D11CryptoSession::base_ID3D11CryptoSession(ID3D11CryptoSession *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,27 +12,42 @@ base_ID3D11CryptoSession::base_ID3D11CryptoSession(ID3D11CryptoSession *impl)
 
 void base_ID3D11CryptoSession::GetCryptoType(GUID* pCryptoType)
 {
-    return impl_->GetCryptoType(pCryptoType);
+    
+    impl_->GetCryptoType(pCryptoType);
+    
+    
 }
      
 void base_ID3D11CryptoSession::GetDecoderProfile(GUID* pDecoderProfile)
 {
-    return impl_->GetDecoderProfile(pDecoderProfile);
+    
+    impl_->GetDecoderProfile(pDecoderProfile);
+    
+    
 }
      
 HRESULT base_ID3D11CryptoSession::GetCertificateSize(UINT* pCertificateSize)
 {
-    return impl_->GetCertificateSize(pCertificateSize);
+    
+    auto result_ = impl_->GetCertificateSize(pCertificateSize);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11CryptoSession::GetCertificate(UINT CertificateSize, BYTE* pCertificate)
 {
-    return impl_->GetCertificate(CertificateSize, pCertificate);
+    
+    auto result_ = impl_->GetCertificate(CertificateSize, pCertificate);
+    
+    return result_;
 }
      
 void base_ID3D11CryptoSession::GetCryptoSessionHandle(HANDLE* pCryptoSessionHandle)
 {
-    return impl_->GetCryptoSessionHandle(pCryptoSessionHandle);
+    
+    impl_->GetCryptoSessionHandle(pCryptoSessionHandle);
+    
+    
 }
      
 

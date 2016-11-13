@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11ShaderResourceView.h"
+#include "../wrappers.h"
 
 base_ID3D11ShaderResourceView::base_ID3D11ShaderResourceView(ID3D11ShaderResourceView *impl)
     : impl_ID3D11View(impl)
@@ -11,7 +12,10 @@ base_ID3D11ShaderResourceView::base_ID3D11ShaderResourceView(ID3D11ShaderResourc
 
 void base_ID3D11ShaderResourceView::GetDesc(D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

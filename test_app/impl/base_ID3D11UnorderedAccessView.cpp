@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11UnorderedAccessView.h"
+#include "../wrappers.h"
 
 base_ID3D11UnorderedAccessView::base_ID3D11UnorderedAccessView(ID3D11UnorderedAccessView *impl)
     : impl_ID3D11View(impl)
@@ -11,7 +12,10 @@ base_ID3D11UnorderedAccessView::base_ID3D11UnorderedAccessView(ID3D11UnorderedAc
 
 void base_ID3D11UnorderedAccessView::GetDesc(D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_IUnknown.h"
+#include "../wrappers.h"
 
 base_IUnknown::base_IUnknown(IUnknown *impl)
     : impl_ROOT(impl)
@@ -11,17 +12,26 @@ base_IUnknown::base_IUnknown(IUnknown *impl)
 
 HRESULT base_IUnknown::QueryInterface(REFIID riid, void** ppvObject)
 {
-    return impl_->QueryInterface(riid, ppvObject);
+    
+    auto result_ = impl_->QueryInterface(riid, ppvObject);
+    
+    return result_;
 }
      
 ULONG base_IUnknown::AddRef()
 {
-    return impl_->AddRef();
+    
+    auto result_ = impl_->AddRef();
+    
+    return result_;
 }
      
 ULONG base_IUnknown::Release()
 {
-    return impl_->Release();
+    
+    auto result_ = impl_->Release();
+    
+    return result_;
 }
      
 

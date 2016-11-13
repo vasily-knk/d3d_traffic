@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11CommandList.h"
+#include "../wrappers.h"
 
 base_ID3D11CommandList::base_ID3D11CommandList(ID3D11CommandList *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11CommandList::base_ID3D11CommandList(ID3D11CommandList *impl)
 
 UINT base_ID3D11CommandList::GetContextFlags()
 {
-    return impl_->GetContextFlags();
+    
+    auto result_ = impl_->GetContextFlags();
+    
+    return result_;
 }
      
 

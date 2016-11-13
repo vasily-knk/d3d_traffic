@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11VideoDecoder.h"
+#include "../wrappers.h"
 
 base_ID3D11VideoDecoder::base_ID3D11VideoDecoder(ID3D11VideoDecoder *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,12 +12,18 @@ base_ID3D11VideoDecoder::base_ID3D11VideoDecoder(ID3D11VideoDecoder *impl)
 
 HRESULT base_ID3D11VideoDecoder::GetCreationParameters(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig)
 {
-    return impl_->GetCreationParameters(pVideoDesc, pConfig);
+    
+    auto result_ = impl_->GetCreationParameters(pVideoDesc, pConfig);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11VideoDecoder::GetDriverHandle(HANDLE* pDriverHandle)
 {
-    return impl_->GetDriverHandle(pDriverHandle);
+    
+    auto result_ = impl_->GetDriverHandle(pDriverHandle);
+    
+    return result_;
 }
      
 

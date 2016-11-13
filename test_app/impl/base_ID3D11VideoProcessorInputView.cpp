@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11VideoProcessorInputView.h"
+#include "../wrappers.h"
 
 base_ID3D11VideoProcessorInputView::base_ID3D11VideoProcessorInputView(ID3D11VideoProcessorInputView *impl)
     : impl_ID3D11View(impl)
@@ -11,7 +12,10 @@ base_ID3D11VideoProcessorInputView::base_ID3D11VideoProcessorInputView(ID3D11Vid
 
 void base_ID3D11VideoProcessorInputView::GetDesc(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

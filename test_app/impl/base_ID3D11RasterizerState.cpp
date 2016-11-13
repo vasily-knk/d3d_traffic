@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11RasterizerState.h"
+#include "../wrappers.h"
 
 base_ID3D11RasterizerState::base_ID3D11RasterizerState(ID3D11RasterizerState *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11RasterizerState::base_ID3D11RasterizerState(ID3D11RasterizerState *im
 
 void base_ID3D11RasterizerState::GetDesc(D3D11_RASTERIZER_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

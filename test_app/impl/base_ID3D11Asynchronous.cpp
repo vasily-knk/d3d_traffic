@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Asynchronous.h"
+#include "../wrappers.h"
 
 base_ID3D11Asynchronous::base_ID3D11Asynchronous(ID3D11Asynchronous *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11Asynchronous::base_ID3D11Asynchronous(ID3D11Asynchronous *impl)
 
 UINT base_ID3D11Asynchronous::GetDataSize()
 {
-    return impl_->GetDataSize();
+    
+    auto result_ = impl_->GetDataSize();
+    
+    return result_;
 }
      
 

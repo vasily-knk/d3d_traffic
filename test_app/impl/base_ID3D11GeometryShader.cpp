@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11GeometryShader.h"
+#include "../wrappers.h"
 
 base_ID3D11GeometryShader::base_ID3D11GeometryShader(ID3D11GeometryShader *impl)
     : impl_ID3D11DeviceChild(impl)

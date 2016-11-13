@@ -1,3 +1,4 @@
+import scala.collection.convert.WrapAsScala
 import scala.io.Source
 
 /**
@@ -28,30 +29,5 @@ object Regexes extends App {
 
   val generateImpls = true
 
-  //new AllGen(dir, generateImpls).generate(ifs)
-
-  val ifsNames = ifs.map(i => i.name).toSet
-
-  def stripArg(a: Arg) = {
-    def stripType(t: Type) = {
-      Type("type", t.isConst, t.ptrs)
-    }
-    def stripAnn(ann: Annotation) = {
-      Annotation(ann.name, None)
-    }
-
-    Arg("", stripType(a.argType), a.annotation.map(stripAnn), a.arraySize)
-  }
-
-
-
-  val iArgs = ifs
-    .flatMap(i => i.methods)
-    .flatMap(m => m.args)
-    .filter(a => ifsNames(a.argType.name))
-    .map(stripArg)
-    .distinct
-
-  iArgs.foreach(a => println(a + ": " + a.annotation))
-
+  new AllGen(dir, generateImpls).generate(ifs)
 }

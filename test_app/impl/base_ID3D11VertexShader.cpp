@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11VertexShader.h"
+#include "../wrappers.h"
 
 base_ID3D11VertexShader::base_ID3D11VertexShader(ID3D11VertexShader *impl)
     : impl_ID3D11DeviceChild(impl)

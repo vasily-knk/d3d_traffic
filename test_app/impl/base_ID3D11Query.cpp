@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Query.h"
+#include "../wrappers.h"
 
 base_ID3D11Query::base_ID3D11Query(ID3D11Query *impl)
     : impl_ID3D11Asynchronous(impl)
@@ -11,7 +12,10 @@ base_ID3D11Query::base_ID3D11Query(ID3D11Query *impl)
 
 void base_ID3D11Query::GetDesc(D3D11_QUERY_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

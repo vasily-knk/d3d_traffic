@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Predicate.h"
+#include "../wrappers.h"
 
 base_ID3D11Predicate::base_ID3D11Predicate(ID3D11Predicate *impl)
     : impl_ID3D11Query(impl)

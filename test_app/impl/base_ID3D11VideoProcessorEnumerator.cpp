@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11VideoProcessorEnumerator.h"
+#include "../wrappers.h"
 
 base_ID3D11VideoProcessorEnumerator::base_ID3D11VideoProcessorEnumerator(ID3D11VideoProcessorEnumerator *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,32 +12,50 @@ base_ID3D11VideoProcessorEnumerator::base_ID3D11VideoProcessorEnumerator(ID3D11V
 
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pContentDesc)
 {
-    return impl_->GetVideoProcessorContentDesc(pContentDesc);
+    
+    auto result_ = impl_->GetVideoProcessorContentDesc(pContentDesc);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11VideoProcessorEnumerator::CheckVideoProcessorFormat(DXGI_FORMAT Format, UINT* pFlags)
 {
-    return impl_->CheckVideoProcessorFormat(Format, pFlags);
+    
+    auto result_ = impl_->CheckVideoProcessorFormat(Format, pFlags);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorCaps(D3D11_VIDEO_PROCESSOR_CAPS* pCaps)
 {
-    return impl_->GetVideoProcessorCaps(pCaps);
+    
+    auto result_ = impl_->GetVideoProcessorCaps(pCaps);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorRateConversionCaps(UINT TypeIndex, D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps)
 {
-    return impl_->GetVideoProcessorRateConversionCaps(TypeIndex, pCaps);
+    
+    auto result_ = impl_->GetVideoProcessorRateConversionCaps(TypeIndex, pCaps);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorCustomRate(UINT TypeIndex, UINT CustomRateIndex, D3D11_VIDEO_PROCESSOR_CUSTOM_RATE* pRate)
 {
-    return impl_->GetVideoProcessorCustomRate(TypeIndex, CustomRateIndex, pRate);
+    
+    auto result_ = impl_->GetVideoProcessorCustomRate(TypeIndex, CustomRateIndex, pRate);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorFilterRange(D3D11_VIDEO_PROCESSOR_FILTER Filter, D3D11_VIDEO_PROCESSOR_FILTER_RANGE* pRange)
 {
-    return impl_->GetVideoProcessorFilterRange(Filter, pRange);
+    
+    auto result_ = impl_->GetVideoProcessorFilterRange(Filter, pRange);
+    
+    return result_;
 }
      
 

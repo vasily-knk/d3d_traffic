@@ -8,11 +8,13 @@ import scala.compat.Platform.EOL
   */
 case class BaseCppGen(dir: String) {
   val genData = new GenData(dir)
+  var ifsNames: Set[String] = null
 
   type InterfacesMap = Map[String, Interface]
 
   def generate(interfaces: List[Interface]): Unit = {
     val parentWalker = new ParentWalker(interfaces)
+    ifsNames = interfaces.map(i => i.name).toSet
 
     interfaces.foreach(i => processInterface(i, parentWalker))
   }
@@ -24,9 +26,17 @@ case class BaseCppGen(dir: String) {
   private def getMethod(i: Interface, m: Method): String = {
     val argNames = m.args.map(m => m.name).mkString(", ")
 
+    val (storeResult, returnResult) = m.retType match {
+      case Type("void", false, List()) => ("", "")
+      case _ => ("auto result_ = ", "return result_;")
+    }
+
     s"""${getMethodSig(i, m)}
        |{
-       |    return impl_->${m.name}($argNames);
+       |    ${unwrapArgs(m.args)}
+       |    ${storeResult}impl_->${m.name}($argNames);
+       |    ${wrapArgs(m.args)}
+       |    $returnResult
        |}
      """.stripMargin
   }
@@ -69,6 +79,7 @@ case class BaseCppGen(dir: String) {
       s"""#include "stdafx.h"
         |
         |#include "$baseName.h"
+        |#include "../wrappers.h"
         |
         |$baseName::$baseName(${i.name} *impl)
         |    : $parentName(impl)
@@ -88,5 +99,62 @@ case class BaseCppGen(dir: String) {
       """.stripMargin)
 
     pw.close()
+  }
+
+  trait WrapStrategy
+  case class Wrap() extends WrapStrategy
+  case class Unwrap() extends WrapStrategy
+  case class WrapArray(countStr: String) extends WrapStrategy
+  case class UnwrapArray(countStr: String) extends WrapStrategy
+
+  def stripArg(a: Arg): WrapStrategy = a match {
+    case Arg(_, Type(_, _, ptrs), Some(ann), None) => ptrs match {
+      // type **
+      case List(Ptr(false), Ptr(false)) => ann match {
+        case Annotation("_Outptr_", None) => Wrap()
+        case Annotation("_COM_Outptr_", None) => Wrap()
+        case Annotation("_Outptr_result_maybenull_", None) => Wrap()
+        case Annotation("_Outptr_opt_result_maybenull_", None) => Wrap()
+        case Annotation("_COM_Outptr_opt_", None) => Wrap()
+        case Annotation("_Out_writes_opt_", Some(count)) => WrapArray(count)
+      }
+
+      // type *const *
+      case List(Ptr(true), Ptr(false)) => ann match {
+        case Annotation("_In_reads_opt_", Some(count)) => UnwrapArray(count)
+      }
+
+      // type (const) *
+      case List(Ptr(_)) => ann match {
+        case Annotation("_In_opt_", None) => Unwrap()
+        case Annotation("_In_", None) => Unwrap()
+      }
+    }
+  }
+
+  private def wrapArgs(args: List[Arg]) = {
+    def wrapArg(a: Arg): Option[String] = stripArg(a) match {
+      case Wrap()           => Some(s"if (${a.name} != nullptr) *${a.name} = wrap(*${a.name});")
+      case WrapArray(count) => Some(s"wrap_array(${a.name}, $count);")
+      case _ => None
+    }
+
+    args
+      .filter(a => ifsNames(a.argType.name))
+      .flatMap(wrapArg)
+      .mkString(s"$EOL    ")
+  }
+
+  private def unwrapArgs(args: List[Arg]) = {
+    def unwrapArg(a: Arg): Option[String] = stripArg(a) match {
+      case Unwrap()           => Some(s"${a.name} = unwrap(${a.name});")
+      case UnwrapArray(count) => Some(s"auto ${a.name}_unwrapped = unwrap_array(${a.name}, $count); ${a.name} = ${a.name}_unwrapped.data();")
+      case _ => None
+    }
+    args
+      .filter(a => ifsNames(a.argType.name))
+      .flatMap(unwrapArg)
+      .mkString(s"$EOL    ")
+
   }
 }

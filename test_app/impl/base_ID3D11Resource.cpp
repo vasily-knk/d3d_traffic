@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Resource.h"
+#include "../wrappers.h"
 
 base_ID3D11Resource::base_ID3D11Resource(ID3D11Resource *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,17 +12,26 @@ base_ID3D11Resource::base_ID3D11Resource(ID3D11Resource *impl)
 
 void base_ID3D11Resource::GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension)
 {
-    return impl_->GetType(pResourceDimension);
+    
+    impl_->GetType(pResourceDimension);
+    
+    
 }
      
 void base_ID3D11Resource::SetEvictionPriority(UINT EvictionPriority)
 {
-    return impl_->SetEvictionPriority(EvictionPriority);
+    
+    impl_->SetEvictionPriority(EvictionPriority);
+    
+    
 }
      
 UINT base_ID3D11Resource::GetEvictionPriority()
 {
-    return impl_->GetEvictionPriority();
+    
+    auto result_ = impl_->GetEvictionPriority();
+    
+    return result_;
 }
      
 

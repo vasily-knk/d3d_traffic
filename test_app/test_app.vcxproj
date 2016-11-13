@@ -165,6 +165,7 @@
     <ClInclude Include="impl\impl_IUnknown.h" />
     <ClInclude Include="impl\impl_ROOT.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="wrappers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="impl\base_ID3D11Asynchronous.cpp" />

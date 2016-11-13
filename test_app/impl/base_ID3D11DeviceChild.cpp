@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11DeviceChild.h"
+#include "../wrappers.h"
 
 base_ID3D11DeviceChild::base_ID3D11DeviceChild(ID3D11DeviceChild *impl)
     : impl_IUnknown(impl)
@@ -11,22 +12,34 @@ base_ID3D11DeviceChild::base_ID3D11DeviceChild(ID3D11DeviceChild *impl)
 
 void base_ID3D11DeviceChild::GetDevice(ID3D11Device** ppDevice)
 {
-    return impl_->GetDevice(ppDevice);
+    
+    impl_->GetDevice(ppDevice);
+    if (ppDevice != nullptr) *ppDevice = wrap(*ppDevice);
+    
 }
      
 HRESULT base_ID3D11DeviceChild::GetPrivateData(REFGUID guid, UINT* pDataSize, void* pData)
 {
-    return impl_->GetPrivateData(guid, pDataSize, pData);
+    
+    auto result_ = impl_->GetPrivateData(guid, pDataSize, pData);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11DeviceChild::SetPrivateData(REFGUID guid, UINT DataSize, void const* pData)
 {
-    return impl_->SetPrivateData(guid, DataSize, pData);
+    
+    auto result_ = impl_->SetPrivateData(guid, DataSize, pData);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11DeviceChild::SetPrivateDataInterface(REFGUID guid, IUnknown const* pData)
 {
-    return impl_->SetPrivateDataInterface(guid, pData);
+    pData = unwrap(pData);
+    auto result_ = impl_->SetPrivateDataInterface(guid, pData);
+    
+    return result_;
 }
      
 

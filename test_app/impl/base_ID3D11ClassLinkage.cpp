@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11ClassLinkage.h"
+#include "../wrappers.h"
 
 base_ID3D11ClassLinkage::base_ID3D11ClassLinkage(ID3D11ClassLinkage *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,12 +12,18 @@ base_ID3D11ClassLinkage::base_ID3D11ClassLinkage(ID3D11ClassLinkage *impl)
 
 HRESULT base_ID3D11ClassLinkage::GetClassInstance(LPCSTR pClassInstanceName, UINT InstanceIndex, ID3D11ClassInstance** ppInstance)
 {
-    return impl_->GetClassInstance(pClassInstanceName, InstanceIndex, ppInstance);
+    
+    auto result_ = impl_->GetClassInstance(pClassInstanceName, InstanceIndex, ppInstance);
+    if (ppInstance != nullptr) *ppInstance = wrap(*ppInstance);
+    return result_;
 }
      
 HRESULT base_ID3D11ClassLinkage::CreateClassInstance(LPCSTR pClassTypeName, UINT ConstantBufferOffset, UINT ConstantVectorOffset, UINT TextureOffset, UINT SamplerOffset, ID3D11ClassInstance** ppInstance)
 {
-    return impl_->CreateClassInstance(pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ppInstance);
+    
+    auto result_ = impl_->CreateClassInstance(pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ppInstance);
+    if (ppInstance != nullptr) *ppInstance = wrap(*ppInstance);
+    return result_;
 }
      
 

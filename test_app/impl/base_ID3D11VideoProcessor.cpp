@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11VideoProcessor.h"
+#include "../wrappers.h"
 
 base_ID3D11VideoProcessor::base_ID3D11VideoProcessor(ID3D11VideoProcessor *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,12 +12,18 @@ base_ID3D11VideoProcessor::base_ID3D11VideoProcessor(ID3D11VideoProcessor *impl)
 
 void base_ID3D11VideoProcessor::GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc)
 {
-    return impl_->GetContentDesc(pDesc);
+    
+    impl_->GetContentDesc(pDesc);
+    
+    
 }
      
 void base_ID3D11VideoProcessor::GetRateConversionCaps(D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps)
 {
-    return impl_->GetRateConversionCaps(pCaps);
+    
+    impl_->GetRateConversionCaps(pCaps);
+    
+    
 }
      
 

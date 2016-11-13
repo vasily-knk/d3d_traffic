@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11BlendState.h"
+#include "../wrappers.h"
 
 base_ID3D11BlendState::base_ID3D11BlendState(ID3D11BlendState *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11BlendState::base_ID3D11BlendState(ID3D11BlendState *impl)
 
 void base_ID3D11BlendState::GetDesc(D3D11_BLEND_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

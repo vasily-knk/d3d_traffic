@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Device.h"
+#include "../wrappers.h"
 
 base_ID3D11Device::base_ID3D11Device(ID3D11Device *impl)
     : impl_IUnknown(impl)
@@ -11,202 +12,322 @@ base_ID3D11Device::base_ID3D11Device(ID3D11Device *impl)
 
 HRESULT base_ID3D11Device::CreateBuffer(D3D11_BUFFER_DESC const* pDesc, D3D11_SUBRESOURCE_DATA const* pInitialData, ID3D11Buffer** ppBuffer)
 {
-    return impl_->CreateBuffer(pDesc, pInitialData, ppBuffer);
+    
+    auto result_ = impl_->CreateBuffer(pDesc, pInitialData, ppBuffer);
+    if (ppBuffer != nullptr) *ppBuffer = wrap(*ppBuffer);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateTexture1D(D3D11_TEXTURE1D_DESC const* pDesc, D3D11_SUBRESOURCE_DATA const* pInitialData, ID3D11Texture1D** ppTexture1D)
 {
-    return impl_->CreateTexture1D(pDesc, pInitialData, ppTexture1D);
+    
+    auto result_ = impl_->CreateTexture1D(pDesc, pInitialData, ppTexture1D);
+    if (ppTexture1D != nullptr) *ppTexture1D = wrap(*ppTexture1D);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateTexture2D(D3D11_TEXTURE2D_DESC const* pDesc, D3D11_SUBRESOURCE_DATA const* pInitialData, ID3D11Texture2D** ppTexture2D)
 {
-    return impl_->CreateTexture2D(pDesc, pInitialData, ppTexture2D);
+    
+    auto result_ = impl_->CreateTexture2D(pDesc, pInitialData, ppTexture2D);
+    if (ppTexture2D != nullptr) *ppTexture2D = wrap(*ppTexture2D);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateTexture3D(D3D11_TEXTURE3D_DESC const* pDesc, D3D11_SUBRESOURCE_DATA const* pInitialData, ID3D11Texture3D** ppTexture3D)
 {
-    return impl_->CreateTexture3D(pDesc, pInitialData, ppTexture3D);
+    
+    auto result_ = impl_->CreateTexture3D(pDesc, pInitialData, ppTexture3D);
+    if (ppTexture3D != nullptr) *ppTexture3D = wrap(*ppTexture3D);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateShaderResourceView(ID3D11Resource* pResource, D3D11_SHADER_RESOURCE_VIEW_DESC const* pDesc, ID3D11ShaderResourceView** ppSRView)
 {
-    return impl_->CreateShaderResourceView(pResource, pDesc, ppSRView);
+    pResource = unwrap(pResource);
+    auto result_ = impl_->CreateShaderResourceView(pResource, pDesc, ppSRView);
+    if (ppSRView != nullptr) *ppSRView = wrap(*ppSRView);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateUnorderedAccessView(ID3D11Resource* pResource, D3D11_UNORDERED_ACCESS_VIEW_DESC const* pDesc, ID3D11UnorderedAccessView** ppUAView)
 {
-    return impl_->CreateUnorderedAccessView(pResource, pDesc, ppUAView);
+    pResource = unwrap(pResource);
+    auto result_ = impl_->CreateUnorderedAccessView(pResource, pDesc, ppUAView);
+    if (ppUAView != nullptr) *ppUAView = wrap(*ppUAView);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateRenderTargetView(ID3D11Resource* pResource, D3D11_RENDER_TARGET_VIEW_DESC const* pDesc, ID3D11RenderTargetView** ppRTView)
 {
-    return impl_->CreateRenderTargetView(pResource, pDesc, ppRTView);
+    pResource = unwrap(pResource);
+    auto result_ = impl_->CreateRenderTargetView(pResource, pDesc, ppRTView);
+    if (ppRTView != nullptr) *ppRTView = wrap(*ppRTView);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateDepthStencilView(ID3D11Resource* pResource, D3D11_DEPTH_STENCIL_VIEW_DESC const* pDesc, ID3D11DepthStencilView** ppDepthStencilView)
 {
-    return impl_->CreateDepthStencilView(pResource, pDesc, ppDepthStencilView);
+    pResource = unwrap(pResource);
+    auto result_ = impl_->CreateDepthStencilView(pResource, pDesc, ppDepthStencilView);
+    if (ppDepthStencilView != nullptr) *ppDepthStencilView = wrap(*ppDepthStencilView);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateInputLayout(D3D11_INPUT_ELEMENT_DESC const* pInputElementDescs, UINT NumElements, void const* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, ID3D11InputLayout** ppInputLayout)
 {
-    return impl_->CreateInputLayout(pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
+    
+    auto result_ = impl_->CreateInputLayout(pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
+    if (ppInputLayout != nullptr) *ppInputLayout = wrap(*ppInputLayout);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateVertexShader(void const* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11VertexShader** ppVertexShader)
 {
-    return impl_->CreateVertexShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppVertexShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreateVertexShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppVertexShader);
+    if (ppVertexShader != nullptr) *ppVertexShader = wrap(*ppVertexShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateGeometryShader(void const* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader)
 {
-    return impl_->CreateGeometryShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppGeometryShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreateGeometryShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppGeometryShader);
+    if (ppGeometryShader != nullptr) *ppGeometryShader = wrap(*ppGeometryShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateGeometryShaderWithStreamOutput(void const* pShaderBytecode, SIZE_T BytecodeLength, D3D11_SO_DECLARATION_ENTRY const* pSODeclaration, UINT NumEntries, UINT const* pBufferStrides, UINT NumStrides, UINT RasterizedStream, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader)
 {
-    return impl_->CreateGeometryShaderWithStreamOutput(pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, pBufferStrides, NumStrides, RasterizedStream, pClassLinkage, ppGeometryShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreateGeometryShaderWithStreamOutput(pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, pBufferStrides, NumStrides, RasterizedStream, pClassLinkage, ppGeometryShader);
+    if (ppGeometryShader != nullptr) *ppGeometryShader = wrap(*ppGeometryShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreatePixelShader(void const* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11PixelShader** ppPixelShader)
 {
-    return impl_->CreatePixelShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppPixelShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreatePixelShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppPixelShader);
+    if (ppPixelShader != nullptr) *ppPixelShader = wrap(*ppPixelShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateHullShader(void const* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11HullShader** ppHullShader)
 {
-    return impl_->CreateHullShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppHullShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreateHullShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppHullShader);
+    if (ppHullShader != nullptr) *ppHullShader = wrap(*ppHullShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateDomainShader(void const* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11DomainShader** ppDomainShader)
 {
-    return impl_->CreateDomainShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppDomainShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreateDomainShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppDomainShader);
+    if (ppDomainShader != nullptr) *ppDomainShader = wrap(*ppDomainShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateComputeShader(void const* pShaderBytecode, SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11ComputeShader** ppComputeShader)
 {
-    return impl_->CreateComputeShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppComputeShader);
+    pClassLinkage = unwrap(pClassLinkage);
+    auto result_ = impl_->CreateComputeShader(pShaderBytecode, BytecodeLength, pClassLinkage, ppComputeShader);
+    if (ppComputeShader != nullptr) *ppComputeShader = wrap(*ppComputeShader);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateClassLinkage(ID3D11ClassLinkage** ppLinkage)
 {
-    return impl_->CreateClassLinkage(ppLinkage);
+    
+    auto result_ = impl_->CreateClassLinkage(ppLinkage);
+    if (ppLinkage != nullptr) *ppLinkage = wrap(*ppLinkage);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateBlendState(D3D11_BLEND_DESC const* pBlendStateDesc, ID3D11BlendState** ppBlendState)
 {
-    return impl_->CreateBlendState(pBlendStateDesc, ppBlendState);
+    
+    auto result_ = impl_->CreateBlendState(pBlendStateDesc, ppBlendState);
+    if (ppBlendState != nullptr) *ppBlendState = wrap(*ppBlendState);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateDepthStencilState(D3D11_DEPTH_STENCIL_DESC const* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState)
 {
-    return impl_->CreateDepthStencilState(pDepthStencilDesc, ppDepthStencilState);
+    
+    auto result_ = impl_->CreateDepthStencilState(pDepthStencilDesc, ppDepthStencilState);
+    if (ppDepthStencilState != nullptr) *ppDepthStencilState = wrap(*ppDepthStencilState);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateRasterizerState(D3D11_RASTERIZER_DESC const* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState)
 {
-    return impl_->CreateRasterizerState(pRasterizerDesc, ppRasterizerState);
+    
+    auto result_ = impl_->CreateRasterizerState(pRasterizerDesc, ppRasterizerState);
+    if (ppRasterizerState != nullptr) *ppRasterizerState = wrap(*ppRasterizerState);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateSamplerState(D3D11_SAMPLER_DESC const* pSamplerDesc, ID3D11SamplerState** ppSamplerState)
 {
-    return impl_->CreateSamplerState(pSamplerDesc, ppSamplerState);
+    
+    auto result_ = impl_->CreateSamplerState(pSamplerDesc, ppSamplerState);
+    if (ppSamplerState != nullptr) *ppSamplerState = wrap(*ppSamplerState);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateQuery(D3D11_QUERY_DESC const* pQueryDesc, ID3D11Query** ppQuery)
 {
-    return impl_->CreateQuery(pQueryDesc, ppQuery);
+    
+    auto result_ = impl_->CreateQuery(pQueryDesc, ppQuery);
+    if (ppQuery != nullptr) *ppQuery = wrap(*ppQuery);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreatePredicate(D3D11_QUERY_DESC const* pPredicateDesc, ID3D11Predicate** ppPredicate)
 {
-    return impl_->CreatePredicate(pPredicateDesc, ppPredicate);
+    
+    auto result_ = impl_->CreatePredicate(pPredicateDesc, ppPredicate);
+    if (ppPredicate != nullptr) *ppPredicate = wrap(*ppPredicate);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateCounter(D3D11_COUNTER_DESC const* pCounterDesc, ID3D11Counter** ppCounter)
 {
-    return impl_->CreateCounter(pCounterDesc, ppCounter);
+    
+    auto result_ = impl_->CreateCounter(pCounterDesc, ppCounter);
+    if (ppCounter != nullptr) *ppCounter = wrap(*ppCounter);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CreateDeferredContext(UINT ContextFlags, ID3D11DeviceContext** ppDeferredContext)
 {
-    return impl_->CreateDeferredContext(ContextFlags, ppDeferredContext);
+    
+    auto result_ = impl_->CreateDeferredContext(ContextFlags, ppDeferredContext);
+    if (ppDeferredContext != nullptr) *ppDeferredContext = wrap(*ppDeferredContext);
+    return result_;
 }
      
 HRESULT base_ID3D11Device::OpenSharedResource(HANDLE hResource, REFIID ReturnedInterface, void** ppResource)
 {
-    return impl_->OpenSharedResource(hResource, ReturnedInterface, ppResource);
+    
+    auto result_ = impl_->OpenSharedResource(hResource, ReturnedInterface, ppResource);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CheckFormatSupport(DXGI_FORMAT Format, UINT* pFormatSupport)
 {
-    return impl_->CheckFormatSupport(Format, pFormatSupport);
+    
+    auto result_ = impl_->CheckFormatSupport(Format, pFormatSupport);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CheckMultisampleQualityLevels(DXGI_FORMAT Format, UINT SampleCount, UINT* pNumQualityLevels)
 {
-    return impl_->CheckMultisampleQualityLevels(Format, SampleCount, pNumQualityLevels);
+    
+    auto result_ = impl_->CheckMultisampleQualityLevels(Format, SampleCount, pNumQualityLevels);
+    
+    return result_;
 }
      
 void base_ID3D11Device::CheckCounterInfo(D3D11_COUNTER_INFO* pCounterInfo)
 {
-    return impl_->CheckCounterInfo(pCounterInfo);
+    
+    impl_->CheckCounterInfo(pCounterInfo);
+    
+    
 }
      
 HRESULT base_ID3D11Device::CheckCounter(D3D11_COUNTER_DESC const* pDesc, D3D11_COUNTER_TYPE* pType, UINT* pActiveCounters, LPSTR szName, UINT* pNameLength, LPSTR szUnits, UINT* pUnitsLength, LPSTR szDescription, UINT* pDescriptionLength)
 {
-    return impl_->CheckCounter(pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
+    
+    auto result_ = impl_->CheckCounter(pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::CheckFeatureSupport(D3D11_FEATURE Feature, void* pFeatureSupportData, UINT FeatureSupportDataSize)
 {
-    return impl_->CheckFeatureSupport(Feature, pFeatureSupportData, FeatureSupportDataSize);
+    
+    auto result_ = impl_->CheckFeatureSupport(Feature, pFeatureSupportData, FeatureSupportDataSize);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::GetPrivateData(REFGUID guid, UINT* pDataSize, void* pData)
 {
-    return impl_->GetPrivateData(guid, pDataSize, pData);
+    
+    auto result_ = impl_->GetPrivateData(guid, pDataSize, pData);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::SetPrivateData(REFGUID guid, UINT DataSize, void const* pData)
 {
-    return impl_->SetPrivateData(guid, DataSize, pData);
+    
+    auto result_ = impl_->SetPrivateData(guid, DataSize, pData);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::SetPrivateDataInterface(REFGUID guid, IUnknown const* pData)
 {
-    return impl_->SetPrivateDataInterface(guid, pData);
+    pData = unwrap(pData);
+    auto result_ = impl_->SetPrivateDataInterface(guid, pData);
+    
+    return result_;
 }
      
 D3D_FEATURE_LEVEL base_ID3D11Device::GetFeatureLevel()
 {
-    return impl_->GetFeatureLevel();
+    
+    auto result_ = impl_->GetFeatureLevel();
+    
+    return result_;
 }
      
 UINT base_ID3D11Device::GetCreationFlags()
 {
-    return impl_->GetCreationFlags();
+    
+    auto result_ = impl_->GetCreationFlags();
+    
+    return result_;
 }
      
 HRESULT base_ID3D11Device::GetDeviceRemovedReason()
 {
-    return impl_->GetDeviceRemovedReason();
+    
+    auto result_ = impl_->GetDeviceRemovedReason();
+    
+    return result_;
 }
      
 void base_ID3D11Device::GetImmediateContext(ID3D11DeviceContext** ppImmediateContext)
 {
-    return impl_->GetImmediateContext(ppImmediateContext);
+    
+    impl_->GetImmediateContext(ppImmediateContext);
+    if (ppImmediateContext != nullptr) *ppImmediateContext = wrap(*ppImmediateContext);
+    
 }
      
 HRESULT base_ID3D11Device::SetExceptionMode(UINT RaiseFlags)
 {
-    return impl_->SetExceptionMode(RaiseFlags);
+    
+    auto result_ = impl_->SetExceptionMode(RaiseFlags);
+    
+    return result_;
 }
      
 UINT base_ID3D11Device::GetExceptionMode()
 {
-    return impl_->GetExceptionMode();
+    
+    auto result_ = impl_->GetExceptionMode();
+    
+    return result_;
 }
      
 

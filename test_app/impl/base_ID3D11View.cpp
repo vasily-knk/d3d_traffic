@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11View.h"
+#include "../wrappers.h"
 
 base_ID3D11View::base_ID3D11View(ID3D11View *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11View::base_ID3D11View(ID3D11View *impl)
 
 void base_ID3D11View::GetResource(ID3D11Resource** ppResource)
 {
-    return impl_->GetResource(ppResource);
+    
+    impl_->GetResource(ppResource);
+    if (ppResource != nullptr) *ppResource = wrap(*ppResource);
+    
 }
      
 

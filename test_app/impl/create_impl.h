@@ -86,19 +86,3 @@ ID3D11VideoDevice *unwrap_inner(ID3D11VideoDevice *wrapper);
 ID3D11Device *unwrap_inner(ID3D11Device *wrapper);
 IUnknown *unwrap_inner(IUnknown *wrapper);
 
-template<typename T>
-T *create_wrapper(T *impl)
-{
-    return create_wrapper_inner(impl);
-}
-
-template<typename T>
-T *unwrap(T *impl)
-{
-    if (!impl)
-        return nullptr;
-
-    return unwrap_inner(impl);
-}
-
-

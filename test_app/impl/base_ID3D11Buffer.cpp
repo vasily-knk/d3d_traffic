@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Buffer.h"
+#include "../wrappers.h"
 
 base_ID3D11Buffer::base_ID3D11Buffer(ID3D11Buffer *impl)
     : impl_ID3D11Resource(impl)
@@ -11,7 +12,10 @@ base_ID3D11Buffer::base_ID3D11Buffer(ID3D11Buffer *impl)
 
 void base_ID3D11Buffer::GetDesc(D3D11_BUFFER_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

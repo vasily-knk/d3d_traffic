@@ -1,14 +1,5 @@
 #include "stdafx.h"
-#include "impl/create_impl.h"
-
-template<typename T>
-T *wrap(T *impl)
-{
-    if (!impl)
-        return nullptr;
-
-    return create_wrapper(impl);
-}
+#include "wrappers.h"
 
 int main()
 {

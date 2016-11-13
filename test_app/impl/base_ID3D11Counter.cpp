@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Counter.h"
+#include "../wrappers.h"
 
 base_ID3D11Counter::base_ID3D11Counter(ID3D11Counter *impl)
     : impl_ID3D11Asynchronous(impl)
@@ -11,7 +12,10 @@ base_ID3D11Counter::base_ID3D11Counter(ID3D11Counter *impl)
 
 void base_ID3D11Counter::GetDesc(D3D11_COUNTER_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

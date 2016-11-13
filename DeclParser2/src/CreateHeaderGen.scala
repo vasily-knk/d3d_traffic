@@ -18,30 +18,6 @@ case class CreateHeaderGen(dir: String) {
           |
           |${processUnwraps(interfaces)}
           |
-          |template<typename T>
-          |T *create_wrapper(T *impl)
-          |{
-          |    return create_wrapper_inner(impl);
-          |}
-          |
-          |template<typename T>
-          |T *unwrap(T *wrapper)
-          |{
-          |    if (!wrapper)
-          |        return nullptr;
-          |
-          |    return unwrap_inner(wrapper);
-          |}
-          |
-          |template<typename T>
-          |T *wrap(T *impl)
-          |{
-          |    if (!impl)
-          |        return nullptr;
-          |
-          |    return create_wrapper_inner(impl);
-          |}
-          |
           |""".stripMargin)
 
     pw.close()

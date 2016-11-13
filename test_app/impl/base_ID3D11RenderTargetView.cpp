@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11RenderTargetView.h"
+#include "../wrappers.h"
 
 base_ID3D11RenderTargetView::base_ID3D11RenderTargetView(ID3D11RenderTargetView *impl)
     : impl_ID3D11View(impl)
@@ -11,7 +12,10 @@ base_ID3D11RenderTargetView::base_ID3D11RenderTargetView(ID3D11RenderTargetView 
 
 void base_ID3D11RenderTargetView::GetDesc(D3D11_RENDER_TARGET_VIEW_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

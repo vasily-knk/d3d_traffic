@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11ComputeShader.h"
+#include "../wrappers.h"
 
 base_ID3D11ComputeShader::base_ID3D11ComputeShader(ID3D11ComputeShader *impl)
     : impl_ID3D11DeviceChild(impl)

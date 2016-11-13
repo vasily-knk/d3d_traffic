@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11SamplerState.h"
+#include "../wrappers.h"
 
 base_ID3D11SamplerState::base_ID3D11SamplerState(ID3D11SamplerState *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11SamplerState::base_ID3D11SamplerState(ID3D11SamplerState *impl)
 
 void base_ID3D11SamplerState::GetDesc(D3D11_SAMPLER_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

@@ -276,6 +276,9 @@
     <ClInclude Include="impl\impl_ROOT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="wrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

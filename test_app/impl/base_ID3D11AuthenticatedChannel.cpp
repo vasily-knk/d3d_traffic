@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11AuthenticatedChannel.h"
+#include "../wrappers.h"
 
 base_ID3D11AuthenticatedChannel::base_ID3D11AuthenticatedChannel(ID3D11AuthenticatedChannel *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,17 +12,26 @@ base_ID3D11AuthenticatedChannel::base_ID3D11AuthenticatedChannel(ID3D11Authentic
 
 HRESULT base_ID3D11AuthenticatedChannel::GetCertificateSize(UINT* pCertificateSize)
 {
-    return impl_->GetCertificateSize(pCertificateSize);
+    
+    auto result_ = impl_->GetCertificateSize(pCertificateSize);
+    
+    return result_;
 }
      
 HRESULT base_ID3D11AuthenticatedChannel::GetCertificate(UINT CertificateSize, BYTE* pCertificate)
 {
-    return impl_->GetCertificate(CertificateSize, pCertificate);
+    
+    auto result_ = impl_->GetCertificate(CertificateSize, pCertificate);
+    
+    return result_;
 }
      
 void base_ID3D11AuthenticatedChannel::GetChannelHandle(HANDLE* pChannelHandle)
 {
-    return impl_->GetChannelHandle(pChannelHandle);
+    
+    impl_->GetChannelHandle(pChannelHandle);
+    
+    
 }
      
 

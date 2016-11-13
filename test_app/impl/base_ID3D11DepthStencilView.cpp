@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11DepthStencilView.h"
+#include "../wrappers.h"
 
 base_ID3D11DepthStencilView::base_ID3D11DepthStencilView(ID3D11DepthStencilView *impl)
     : impl_ID3D11View(impl)
@@ -11,7 +12,10 @@ base_ID3D11DepthStencilView::base_ID3D11DepthStencilView(ID3D11DepthStencilView 
 
 void base_ID3D11DepthStencilView::GetDesc(D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

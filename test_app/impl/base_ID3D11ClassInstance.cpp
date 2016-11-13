@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11ClassInstance.h"
+#include "../wrappers.h"
 
 base_ID3D11ClassInstance::base_ID3D11ClassInstance(ID3D11ClassInstance *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,22 +12,34 @@ base_ID3D11ClassInstance::base_ID3D11ClassInstance(ID3D11ClassInstance *impl)
 
 void base_ID3D11ClassInstance::GetClassLinkage(ID3D11ClassLinkage** ppLinkage)
 {
-    return impl_->GetClassLinkage(ppLinkage);
+    
+    impl_->GetClassLinkage(ppLinkage);
+    if (ppLinkage != nullptr) *ppLinkage = wrap(*ppLinkage);
+    
 }
      
 void base_ID3D11ClassInstance::GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 void base_ID3D11ClassInstance::GetInstanceName(LPSTR pInstanceName, SIZE_T* pBufferLength)
 {
-    return impl_->GetInstanceName(pInstanceName, pBufferLength);
+    
+    impl_->GetInstanceName(pInstanceName, pBufferLength);
+    
+    
 }
      
 void base_ID3D11ClassInstance::GetTypeName(LPSTR pTypeName, SIZE_T* pBufferLength)
 {
-    return impl_->GetTypeName(pTypeName, pBufferLength);
+    
+    impl_->GetTypeName(pTypeName, pBufferLength);
+    
+    
 }
      
 

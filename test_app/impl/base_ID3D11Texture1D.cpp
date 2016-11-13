@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11Texture1D.h"
+#include "../wrappers.h"
 
 base_ID3D11Texture1D::base_ID3D11Texture1D(ID3D11Texture1D *impl)
     : impl_ID3D11Resource(impl)
@@ -11,7 +12,10 @@ base_ID3D11Texture1D::base_ID3D11Texture1D(ID3D11Texture1D *impl)
 
 void base_ID3D11Texture1D::GetDesc(D3D11_TEXTURE1D_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 

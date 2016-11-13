@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11InputLayout.h"
+#include "../wrappers.h"
 
 base_ID3D11InputLayout::base_ID3D11InputLayout(ID3D11InputLayout *impl)
     : impl_ID3D11DeviceChild(impl)

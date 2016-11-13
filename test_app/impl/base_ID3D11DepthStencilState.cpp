@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "base_ID3D11DepthStencilState.h"
+#include "../wrappers.h"
 
 base_ID3D11DepthStencilState::base_ID3D11DepthStencilState(ID3D11DepthStencilState *impl)
     : impl_ID3D11DeviceChild(impl)
@@ -11,7 +12,10 @@ base_ID3D11DepthStencilState::base_ID3D11DepthStencilState(ID3D11DepthStencilSta
 
 void base_ID3D11DepthStencilState::GetDesc(D3D11_DEPTH_STENCIL_DESC* pDesc)
 {
-    return impl_->GetDesc(pDesc);
+    
+    impl_->GetDesc(pDesc);
+    
+    
 }
      
 
