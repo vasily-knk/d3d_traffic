@@ -2,17 +2,11 @@
 
 #include "impl/create_impl.h"
 
-inline IUnknown const *unwrap_inner(IUnknown const *impl)
-{
-    auto impl_cast = const_cast<IUnknown *>(impl);
-    return unwrap_inner(impl_cast);
-}
+typedef std::function<IUnknown *(IUnknown *)> create_wrapper_f;
+typedef std::function<IUnknown *(IUnknown *)> unwrap_f;
 
-template<typename T>
-T *create_wrapper(T *impl)
-{
-    return create_wrapper_inner(impl);
-}
+IUnknown *wrap_impl(IUnknown *impl, create_wrapper_f creator);
+IUnknown *unwrap_impl(IUnknown *wrapper, unwrap_f unwrapper);
 
 template<typename T>
 T *unwrap(T *wrapper)
@@ -20,8 +14,20 @@ T *unwrap(T *wrapper)
     if (!wrapper)
         return nullptr;
 
-    return unwrap_inner(wrapper);
+    auto f = [](IUnknown *wr)
+    {
+        return unwrap_inner(static_cast<T*>(wr));
+    };
+
+    return static_cast<T*>(unwrap_impl(wrapper, f));
 }
+
+inline IUnknown *unwrap(IUnknown const *impl)
+{
+    auto impl_cast = const_cast<IUnknown *>(impl);
+    return unwrap(impl_cast);
+}
+
 
 template<typename T>
 T *wrap(T *impl)
@@ -29,7 +35,12 @@ T *wrap(T *impl)
     if (!impl)
         return nullptr;
 
-    return create_wrapper_inner(impl);
+    auto f = [](IUnknown *im)
+    {
+        return create_wrapper_inner(static_cast<T*>(im));
+    };
+
+    return static_cast<T*>(wrap_impl(impl, f));
 }
 
 template<typename T>
@@ -53,5 +64,5 @@ void wrap_array(T *const ptr, size_t size)
 template<typename T>
 bool check_magic(T const *ptr)
 {
-    return false;
+    return true;
 }

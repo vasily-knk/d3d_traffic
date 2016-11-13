@@ -16,3 +16,6 @@ using boost::optional;
 #include <d3d11.h>
 
 #include <cstdint>
+
+#include <map>
+#include <set>

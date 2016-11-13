@@ -273,6 +273,9 @@
     <ClCompile Include="proxy_d3d11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="wrappers.h">
