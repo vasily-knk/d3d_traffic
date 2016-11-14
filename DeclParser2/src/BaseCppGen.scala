@@ -117,6 +117,8 @@ case class BaseCppGen(dir: String) {
     case Arg(_, Type(_, _, ptrs), Some(ann), None) => ptrs match {
       // type **
       case List(Ptr(false), Ptr(false)) => ann match {
+        case Annotation("_Out_", None) => Wrap()
+        case Annotation("_Out_opt_", None) => Wrap()
         case Annotation("_Outptr_", None) => Wrap()
         case Annotation("_COM_Outptr_", None) => Wrap()
         case Annotation("_Outptr_result_maybenull_", None) => Wrap()

@@ -22,7 +22,7 @@ object Regexes extends App {
     ifs
   }
 
-  val files = List("d3d11.h", "iunknown.h")
+  val files = List("d3d10.h", "d3d11.h", "d3d11_1.h", "iunknown.h")
   val ifs = files.flatMap(parseFile)
   val dir = "../proxy_d3d11/impl"
   //val dir = "out_files"

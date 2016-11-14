@@ -14,6 +14,8 @@ using boost::optional;
 #include <boost/type_traits.hpp>
 
 #include <d3d11.h>
+#include <d3d11_1.h>
+#include <d3d10.h>
 
 #include <cstdint>
 
