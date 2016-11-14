@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ROOT.h"
-
 struct base_IUnknown
-    : impl_ROOT
-    , IUnknown
+    : IUnknown
 {
     explicit base_IUnknown(IUnknown *impl);
+    virtual ~base_IUnknown() {}
 
     HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override;
     ULONG STDMETHODCALLTYPE AddRef() override;
@@ -21,5 +19,6 @@ public:
 
 private:
     IUnknown *impl_;
+    unique_ptr<ROOT> parent_base_;
 };
       

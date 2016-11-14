@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11Resource.h"
-
 struct base_ID3D11Texture3D
-    : impl_ID3D11Resource
-    , ID3D11Texture3D
+    : ID3D11Texture3D
 {
     explicit base_ID3D11Texture3D(ID3D11Texture3D *impl);
+    virtual ~base_ID3D11Texture3D() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_TEXTURE3D_DESC* pDesc) override;
 
@@ -28,5 +26,6 @@ public:
 
 private:
     ID3D11Texture3D *impl_;
+    unique_ptr<ID3D11Resource> parent_base_;
 };
       

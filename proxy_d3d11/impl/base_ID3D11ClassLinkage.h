@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11ClassLinkage
-    : impl_ID3D11DeviceChild
-    , ID3D11ClassLinkage
+    : ID3D11ClassLinkage
 {
     explicit base_ID3D11ClassLinkage(ID3D11ClassLinkage *impl);
+    virtual ~base_ID3D11ClassLinkage() {}
 
     HRESULT STDMETHODCALLTYPE GetClassInstance(LPCSTR pClassInstanceName, UINT InstanceIndex, ID3D11ClassInstance** ppInstance) override;
     HRESULT STDMETHODCALLTYPE CreateClassInstance(LPCSTR pClassTypeName, UINT ConstantBufferOffset, UINT ConstantVectorOffset, UINT TextureOffset, UINT SamplerOffset, ID3D11ClassInstance** ppInstance) override;
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11ClassLinkage *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

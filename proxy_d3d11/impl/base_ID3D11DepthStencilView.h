@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11View.h"
-
 struct base_ID3D11DepthStencilView
-    : impl_ID3D11View
-    , ID3D11DepthStencilView
+    : ID3D11DepthStencilView
 {
     explicit base_ID3D11DepthStencilView(ID3D11DepthStencilView *impl);
+    virtual ~base_ID3D11DepthStencilView() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11DepthStencilView *impl_;
+    unique_ptr<ID3D11View> parent_base_;
 };
       

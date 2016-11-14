@@ -3,9 +3,15 @@
 #include "base_ID3D11Device.h"
 #include "../wrappers.h"
 
+ID3D11Device *unwrap_inner(ID3D11Device *wrapper)
+{
+    auto *cast_wrapper = static_cast<base_ID3D11Device *>(wrapper);
+    return cast_wrapper->impl();
+}
+
 base_ID3D11Device::base_ID3D11Device(ID3D11Device *impl)
-    : impl_IUnknown(impl)
-    , impl_(impl)
+    : impl_(impl)
+    , parent_base_(create_wrapper<IUnknown>(impl))
 {
 
 }
@@ -333,17 +339,17 @@ UINT base_ID3D11Device::GetExceptionMode()
 
 HRESULT base_ID3D11Device::QueryInterface(REFIID riid, void** ppvObject)
 {
-    return impl_IUnknown::QueryInterface(riid, ppvObject);
+    return parent_base_->QueryInterface(riid, ppvObject);
 }
      
 ULONG base_ID3D11Device::AddRef()
 {
-    return impl_IUnknown::AddRef();
+    return parent_base_->AddRef();
 }
      
 ULONG base_ID3D11Device::Release()
 {
-    return impl_IUnknown::Release();
+    return parent_base_->Release();
 }
      
 

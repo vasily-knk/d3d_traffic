@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11View.h"
-
 struct base_ID3D11ShaderResourceView
-    : impl_ID3D11View
-    , ID3D11ShaderResourceView
+    : ID3D11ShaderResourceView
 {
     explicit base_ID3D11ShaderResourceView(ID3D11ShaderResourceView *impl);
+    virtual ~base_ID3D11ShaderResourceView() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11ShaderResourceView *impl_;
+    unique_ptr<ID3D11View> parent_base_;
 };
       

@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11View
-    : impl_ID3D11DeviceChild
-    , ID3D11View
+    : ID3D11View
 {
     explicit base_ID3D11View(ID3D11View *impl);
+    virtual ~base_ID3D11View() {}
 
     void STDMETHODCALLTYPE GetResource(ID3D11Resource** ppResource) override;
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11View *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

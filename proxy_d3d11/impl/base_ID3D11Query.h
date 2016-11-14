@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11Asynchronous.h"
-
 struct base_ID3D11Query
-    : impl_ID3D11Asynchronous
-    , ID3D11Query
+    : ID3D11Query
 {
     explicit base_ID3D11Query(ID3D11Query *impl);
+    virtual ~base_ID3D11Query() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_QUERY_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11Query *impl_;
+    unique_ptr<ID3D11Asynchronous> parent_base_;
 };
       

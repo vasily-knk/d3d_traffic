@@ -7,4 +7,4 @@ struct impl_ID3D11Resource
 {
     explicit impl_ID3D11Resource(ID3D11Resource *impl);
 };
-      
+                                 

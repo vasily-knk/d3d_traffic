@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11ClassInstance
-    : impl_ID3D11DeviceChild
-    , ID3D11ClassInstance
+    : ID3D11ClassInstance
 {
     explicit base_ID3D11ClassInstance(ID3D11ClassInstance *impl);
+    virtual ~base_ID3D11ClassInstance() {}
 
     void STDMETHODCALLTYPE GetClassLinkage(ID3D11ClassLinkage** ppLinkage) override;
     void STDMETHODCALLTYPE GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc) override;
@@ -28,5 +26,6 @@ public:
 
 private:
     ID3D11ClassInstance *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11Asynchronous
-    : impl_ID3D11DeviceChild
-    , ID3D11Asynchronous
+    : ID3D11Asynchronous
 {
     explicit base_ID3D11Asynchronous(ID3D11Asynchronous *impl);
+    virtual ~base_ID3D11Asynchronous() {}
 
     UINT STDMETHODCALLTYPE GetDataSize() override;
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11Asynchronous *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

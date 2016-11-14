@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11VideoProcessorEnumerator
-    : impl_ID3D11DeviceChild
-    , ID3D11VideoProcessorEnumerator
+    : ID3D11VideoProcessorEnumerator
 {
     explicit base_ID3D11VideoProcessorEnumerator(ID3D11VideoProcessorEnumerator *impl);
+    virtual ~base_ID3D11VideoProcessorEnumerator() {}
 
     HRESULT STDMETHODCALLTYPE GetVideoProcessorContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pContentDesc) override;
     HRESULT STDMETHODCALLTYPE CheckVideoProcessorFormat(DXGI_FORMAT Format, UINT* pFlags) override;
@@ -30,5 +28,6 @@ public:
 
 private:
     ID3D11VideoProcessorEnumerator *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

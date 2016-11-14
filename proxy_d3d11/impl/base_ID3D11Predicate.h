@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11Query.h"
-
 struct base_ID3D11Predicate
-    : impl_ID3D11Query
-    , ID3D11Predicate
+    : ID3D11Predicate
 {
     explicit base_ID3D11Predicate(ID3D11Predicate *impl);
+    virtual ~base_ID3D11Predicate() {}
 
     
 
@@ -27,5 +25,6 @@ public:
 
 private:
     ID3D11Predicate *impl_;
+    unique_ptr<ID3D11Query> parent_base_;
 };
       

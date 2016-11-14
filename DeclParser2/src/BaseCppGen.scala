@@ -47,7 +47,7 @@ case class BaseCppGen(dir: String) {
 
     s"""${getMethodSig(i, m)}
        |{
-       |    return $parentName::${m.name}($argNames);
+       |    return parent_base_->${m.name}($argNames);
        |}
      """.stripMargin
   }
@@ -81,9 +81,15 @@ case class BaseCppGen(dir: String) {
         |#include "$baseName.h"
         |#include "../wrappers.h"
         |
+        |${i.name} *unwrap_inner(${i.name} *wrapper)
+        |{
+        |    auto *cast_wrapper = static_cast<$baseName *>(wrapper);
+        |    return cast_wrapper->impl();
+        |}
+        |
         |$baseName::$baseName(${i.name} *impl)
-        |    : $parentName(impl)
-        |    , impl_(impl)
+        |    : impl_(impl)
+        |    , parent_base_(create_wrapper<${i.parentName}>(impl))
         |{
         |
         |}

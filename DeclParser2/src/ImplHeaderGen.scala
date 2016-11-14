@@ -13,7 +13,11 @@ case class ImplHeaderGen(dir: String) {
   private def processInterface(i: Interface): Unit = {
     val filename = genData.getImplHeaderPath(i.name)
 
-    val pw = new PrintWriter(new File(filename))
+    val file = new File(filename)
+    if (file.exists())
+      return
+
+    val pw = new PrintWriter(file)
 
     val baseName = genData.getBaseName(i.name)
     val implName = genData.getImplName(i.name)

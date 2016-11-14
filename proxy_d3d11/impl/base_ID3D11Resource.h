@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11Resource
-    : impl_ID3D11DeviceChild
-    , ID3D11Resource
+    : ID3D11Resource
 {
     explicit base_ID3D11Resource(ID3D11Resource *impl);
+    virtual ~base_ID3D11Resource() {}
 
     void STDMETHODCALLTYPE GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension) override;
     void STDMETHODCALLTYPE SetEvictionPriority(UINT EvictionPriority) override;
@@ -27,5 +25,6 @@ public:
 
 private:
     ID3D11Resource *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

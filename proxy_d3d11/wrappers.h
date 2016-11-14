@@ -2,6 +2,12 @@
 
 #include "impl/create_impl.h"
 
+struct ROOT
+{
+    virtual ~ROOT() {}
+};
+
+
 typedef std::function<IUnknown *(IUnknown *)> create_wrapper_f;
 typedef std::function<IUnknown *(IUnknown *)> unwrap_f;
 typedef std::function<IUnknown *(IUnknown *)> wrap_f;
@@ -27,6 +33,18 @@ inline IUnknown *unwrap(IUnknown const *impl)
 {
     auto impl_cast = const_cast<IUnknown *>(impl);
     return unwrap(impl_cast);
+}
+
+template<typename T>
+T *create_wrapper(T *impl)
+{
+    return create_wrapper_inner(impl);
+}
+
+template<typename T>
+inline ROOT *create_wrapper(void *)
+{
+    return nullptr;
 }
 
 

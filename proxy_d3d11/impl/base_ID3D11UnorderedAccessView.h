@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11View.h"
-
 struct base_ID3D11UnorderedAccessView
-    : impl_ID3D11View
-    , ID3D11UnorderedAccessView
+    : ID3D11UnorderedAccessView
 {
     explicit base_ID3D11UnorderedAccessView(ID3D11UnorderedAccessView *impl);
+    virtual ~base_ID3D11UnorderedAccessView() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11UnorderedAccessView *impl_;
+    unique_ptr<ID3D11View> parent_base_;
 };
       

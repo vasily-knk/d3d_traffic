@@ -27,7 +27,7 @@ object Regexes extends App {
   val dir = "../proxy_d3d11/impl"
   //val dir = "out_files"
 
-  val generateImpls = false
+  val generateImpls = true
 
   new AllGen(dir, generateImpls).generate(ifs)
 }

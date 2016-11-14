@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_IUnknown.h"
-
 struct base_ID3D11VideoDevice
-    : impl_IUnknown
-    , ID3D11VideoDevice
+    : ID3D11VideoDevice
 {
     explicit base_ID3D11VideoDevice(ID3D11VideoDevice *impl);
+    virtual ~base_ID3D11VideoDevice() {}
 
     HRESULT STDMETHODCALLTYPE CreateVideoDecoder(D3D11_VIDEO_DECODER_DESC const* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG const* pConfig, ID3D11VideoDecoder** ppDecoder) override;
     HRESULT STDMETHODCALLTYPE CreateVideoProcessor(ID3D11VideoProcessorEnumerator* pEnum, UINT RateConversionIndex, ID3D11VideoProcessor** ppVideoProcessor) override;
@@ -37,5 +35,6 @@ public:
 
 private:
     ID3D11VideoDevice *impl_;
+    unique_ptr<IUnknown> parent_base_;
 };
       

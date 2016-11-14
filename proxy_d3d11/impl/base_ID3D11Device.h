@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_IUnknown.h"
-
 struct base_ID3D11Device
-    : impl_IUnknown
-    , ID3D11Device
+    : ID3D11Device
 {
     explicit base_ID3D11Device(ID3D11Device *impl);
+    virtual ~base_ID3D11Device() {}
 
     HRESULT STDMETHODCALLTYPE CreateBuffer(D3D11_BUFFER_DESC const* pDesc, D3D11_SUBRESOURCE_DATA const* pInitialData, ID3D11Buffer** ppBuffer) override;
     HRESULT STDMETHODCALLTYPE CreateTexture1D(D3D11_TEXTURE1D_DESC const* pDesc, D3D11_SUBRESOURCE_DATA const* pInitialData, ID3D11Texture1D** ppTexture1D) override;
@@ -60,5 +58,6 @@ public:
 
 private:
     ID3D11Device *impl_;
+    unique_ptr<IUnknown> parent_base_;
 };
       

@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11Resource.h"
-
 struct base_ID3D11Buffer
-    : impl_ID3D11Resource
-    , ID3D11Buffer
+    : ID3D11Buffer
 {
     explicit base_ID3D11Buffer(ID3D11Buffer *impl);
+    virtual ~base_ID3D11Buffer() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_BUFFER_DESC* pDesc) override;
 
@@ -28,5 +26,6 @@ public:
 
 private:
     ID3D11Buffer *impl_;
+    unique_ptr<ID3D11Resource> parent_base_;
 };
       

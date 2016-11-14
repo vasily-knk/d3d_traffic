@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11AuthenticatedChannel
-    : impl_ID3D11DeviceChild
-    , ID3D11AuthenticatedChannel
+    : ID3D11AuthenticatedChannel
 {
     explicit base_ID3D11AuthenticatedChannel(ID3D11AuthenticatedChannel *impl);
+    virtual ~base_ID3D11AuthenticatedChannel() {}
 
     HRESULT STDMETHODCALLTYPE GetCertificateSize(UINT* pCertificateSize) override;
     HRESULT STDMETHODCALLTYPE GetCertificate(UINT CertificateSize, BYTE* pCertificate) override;
@@ -27,5 +25,6 @@ public:
 
 private:
     ID3D11AuthenticatedChannel *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

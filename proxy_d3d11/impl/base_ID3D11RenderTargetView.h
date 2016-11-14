@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11View.h"
-
 struct base_ID3D11RenderTargetView
-    : impl_ID3D11View
-    , ID3D11RenderTargetView
+    : ID3D11RenderTargetView
 {
     explicit base_ID3D11RenderTargetView(ID3D11RenderTargetView *impl);
+    virtual ~base_ID3D11RenderTargetView() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_RENDER_TARGET_VIEW_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11RenderTargetView *impl_;
+    unique_ptr<ID3D11View> parent_base_;
 };
       

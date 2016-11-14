@@ -8,19 +8,6 @@ ID3D11GeometryShader *create_wrapper_inner(ID3D11GeometryShader *impl)
     return new impl_ID3D11GeometryShader(impl);
 }
 
-ID3D11GeometryShader *unwrap_inner(ID3D11GeometryShader *wrapper)
-{
-    if (check_magic(wrapper))
-    {
-        auto *cast_wrapper = static_cast<impl_ID3D11GeometryShader *>(wrapper);
-        return cast_wrapper->impl();
-    }
-    else
-    {
-        return wrapper;
-    }
-}
-
 impl_ID3D11GeometryShader::impl_ID3D11GeometryShader(ID3D11GeometryShader *impl)
     : base_ID3D11GeometryShader(impl)
 {

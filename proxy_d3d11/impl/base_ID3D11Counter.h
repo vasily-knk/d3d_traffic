@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11Asynchronous.h"
-
 struct base_ID3D11Counter
-    : impl_ID3D11Asynchronous
-    , ID3D11Counter
+    : ID3D11Counter
 {
     explicit base_ID3D11Counter(ID3D11Counter *impl);
+    virtual ~base_ID3D11Counter() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_COUNTER_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11Counter *impl_;
+    unique_ptr<ID3D11Asynchronous> parent_base_;
 };
       

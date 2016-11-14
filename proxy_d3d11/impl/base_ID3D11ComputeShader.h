@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11ComputeShader
-    : impl_ID3D11DeviceChild
-    , ID3D11ComputeShader
+    : ID3D11ComputeShader
 {
     explicit base_ID3D11ComputeShader(ID3D11ComputeShader *impl);
+    virtual ~base_ID3D11ComputeShader() {}
 
     
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11ComputeShader *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

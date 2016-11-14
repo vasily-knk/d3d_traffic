@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11VideoProcessor
-    : impl_ID3D11DeviceChild
-    , ID3D11VideoProcessor
+    : ID3D11VideoProcessor
 {
     explicit base_ID3D11VideoProcessor(ID3D11VideoProcessor *impl);
+    virtual ~base_ID3D11VideoProcessor() {}
 
     void STDMETHODCALLTYPE GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc) override;
     void STDMETHODCALLTYPE GetRateConversionCaps(D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps) override;
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11VideoProcessor *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

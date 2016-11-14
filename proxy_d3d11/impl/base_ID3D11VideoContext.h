@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11VideoContext
-    : impl_ID3D11DeviceChild
-    , ID3D11VideoContext
+    : ID3D11VideoContext
 {
     explicit base_ID3D11VideoContext(ID3D11VideoContext *impl);
+    virtual ~base_ID3D11VideoContext() {}
 
     HRESULT STDMETHODCALLTYPE GetDecoderBuffer(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, UINT* pBufferSize, void** ppBuffer) override;
     HRESULT STDMETHODCALLTYPE ReleaseDecoderBuffer(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type) override;
@@ -82,5 +80,6 @@ public:
 
 private:
     ID3D11VideoContext *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

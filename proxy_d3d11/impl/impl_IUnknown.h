@@ -3,10 +3,10 @@
 #include "base_IUnknown.h"
 
 struct impl_IUnknown
-    : base_IUnknown
+    : base_IUnknown                     
 {
     explicit impl_IUnknown(IUnknown *impl);
-
-    HRESULT STDMETHODCALLTYPE QueryInterface(const IID& riid, void** ppvObject) override;
-};
-      
+    
+    HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override;
+};                       
+                                             

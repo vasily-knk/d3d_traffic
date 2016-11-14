@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11CryptoSession
-    : impl_ID3D11DeviceChild
-    , ID3D11CryptoSession
+    : ID3D11CryptoSession
 {
     explicit base_ID3D11CryptoSession(ID3D11CryptoSession *impl);
+    virtual ~base_ID3D11CryptoSession() {}
 
     void STDMETHODCALLTYPE GetCryptoType(GUID* pCryptoType) override;
     void STDMETHODCALLTYPE GetDecoderProfile(GUID* pDecoderProfile) override;
@@ -29,5 +27,6 @@ public:
 
 private:
     ID3D11CryptoSession *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

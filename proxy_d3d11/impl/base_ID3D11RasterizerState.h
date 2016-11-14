@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11RasterizerState
-    : impl_ID3D11DeviceChild
-    , ID3D11RasterizerState
+    : ID3D11RasterizerState
 {
     explicit base_ID3D11RasterizerState(ID3D11RasterizerState *impl);
+    virtual ~base_ID3D11RasterizerState() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_RASTERIZER_DESC* pDesc) override;
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11RasterizerState *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

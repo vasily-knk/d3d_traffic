@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_IUnknown.h"
-
 struct base_ID3D11DeviceChild
-    : impl_IUnknown
-    , ID3D11DeviceChild
+    : ID3D11DeviceChild
 {
     explicit base_ID3D11DeviceChild(ID3D11DeviceChild *impl);
+    virtual ~base_ID3D11DeviceChild() {}
 
     void STDMETHODCALLTYPE GetDevice(ID3D11Device** ppDevice) override;
     HRESULT STDMETHODCALLTYPE GetPrivateData(REFGUID guid, UINT* pDataSize, void* pData) override;
@@ -24,5 +22,6 @@ public:
 
 private:
     ID3D11DeviceChild *impl_;
+    unique_ptr<IUnknown> parent_base_;
 };
       

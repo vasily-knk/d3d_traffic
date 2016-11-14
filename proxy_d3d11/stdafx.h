@@ -19,3 +19,9 @@ using boost::optional;
 
 #include <map>
 #include <set>
+
+#include <memory>
+using std::unique_ptr;
+using std::shared_ptr;
+
+struct ROOT;

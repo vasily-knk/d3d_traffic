@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11InputLayout
-    : impl_ID3D11DeviceChild
-    , ID3D11InputLayout
+    : ID3D11InputLayout
 {
     explicit base_ID3D11InputLayout(ID3D11InputLayout *impl);
+    virtual ~base_ID3D11InputLayout() {}
 
     
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11InputLayout *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

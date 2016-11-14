@@ -3,9 +3,15 @@
 #include "base_ID3D11VideoDecoder.h"
 #include "../wrappers.h"
 
+ID3D11VideoDecoder *unwrap_inner(ID3D11VideoDecoder *wrapper)
+{
+    auto *cast_wrapper = static_cast<base_ID3D11VideoDecoder *>(wrapper);
+    return cast_wrapper->impl();
+}
+
 base_ID3D11VideoDecoder::base_ID3D11VideoDecoder(ID3D11VideoDecoder *impl)
-    : impl_ID3D11DeviceChild(impl)
-    , impl_(impl)
+    : impl_(impl)
+    , parent_base_(create_wrapper<ID3D11DeviceChild>(impl))
 {
 
 }
@@ -29,37 +35,37 @@ HRESULT base_ID3D11VideoDecoder::GetDriverHandle(HANDLE* pDriverHandle)
 
 void base_ID3D11VideoDecoder::GetDevice(ID3D11Device** ppDevice)
 {
-    return impl_ID3D11DeviceChild::GetDevice(ppDevice);
+    return parent_base_->GetDevice(ppDevice);
 }
      
 HRESULT base_ID3D11VideoDecoder::GetPrivateData(REFGUID guid, UINT* pDataSize, void* pData)
 {
-    return impl_ID3D11DeviceChild::GetPrivateData(guid, pDataSize, pData);
+    return parent_base_->GetPrivateData(guid, pDataSize, pData);
 }
      
 HRESULT base_ID3D11VideoDecoder::SetPrivateData(REFGUID guid, UINT DataSize, void const* pData)
 {
-    return impl_ID3D11DeviceChild::SetPrivateData(guid, DataSize, pData);
+    return parent_base_->SetPrivateData(guid, DataSize, pData);
 }
      
 HRESULT base_ID3D11VideoDecoder::SetPrivateDataInterface(REFGUID guid, IUnknown const* pData)
 {
-    return impl_ID3D11DeviceChild::SetPrivateDataInterface(guid, pData);
+    return parent_base_->SetPrivateDataInterface(guid, pData);
 }
      
 HRESULT base_ID3D11VideoDecoder::QueryInterface(REFIID riid, void** ppvObject)
 {
-    return impl_ID3D11DeviceChild::QueryInterface(riid, ppvObject);
+    return parent_base_->QueryInterface(riid, ppvObject);
 }
      
 ULONG base_ID3D11VideoDecoder::AddRef()
 {
-    return impl_ID3D11DeviceChild::AddRef();
+    return parent_base_->AddRef();
 }
      
 ULONG base_ID3D11VideoDecoder::Release()
 {
-    return impl_ID3D11DeviceChild::Release();
+    return parent_base_->Release();
 }
      
 

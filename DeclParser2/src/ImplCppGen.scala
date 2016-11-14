@@ -13,7 +13,11 @@ case class ImplCppGen(dir: String)  {
   private def processInterface(i: Interface): Unit = {
     val filename = genData.getImplCppPath(i.name)
 
-    val pw = new PrintWriter(new File(filename))
+    val file = new File(filename)
+    if (file.exists())
+      return
+
+    val pw = new PrintWriter(file)
 
     val baseName = genData.getBaseName(i.name)
     val implName = genData.getImplName(i.name)
@@ -27,19 +31,6 @@ case class ImplCppGen(dir: String)  {
         |${i.name} *create_wrapper_inner(${i.name} *impl)
         |{
         |    return new $implName(impl);
-        |}
-        |
-        |${i.name} *unwrap_inner(${i.name} *wrapper)
-        |{
-        |    if (check_magic(wrapper))
-        |    {
-        |        auto *cast_wrapper = static_cast<$implName *>(wrapper);
-        |        return cast_wrapper->impl();
-        |    }
-        |    else
-        |    {
-        |        return wrapper;
-        |    }
         |}
         |
         |$implName::$implName(${i.name} *impl)

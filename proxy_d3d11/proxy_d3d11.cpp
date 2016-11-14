@@ -10,15 +10,7 @@ lib_wrapper &get_d3d11_lib()
     static lib_wrapper d3d11("C:\\windows\\system32\\d3d11.dll");
     return d3d11;
 }
-
-
-PFN_D3D11_CREATE_DEVICE get_create_device_fn()
-{
-    return get_d3d11_lib().get_function<PFN_D3D11_CREATE_DEVICE>("D3D11CreateDevice");
-}
-
-
-    
+   
 }
 
 HRESULT WINAPI D3D11CreateDevice(

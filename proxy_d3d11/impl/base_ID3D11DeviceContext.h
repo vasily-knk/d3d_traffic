@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11DeviceContext
-    : impl_ID3D11DeviceChild
-    , ID3D11DeviceContext
+    : ID3D11DeviceContext
 {
     explicit base_ID3D11DeviceContext(ID3D11DeviceContext *impl);
+    virtual ~base_ID3D11DeviceContext() {}
 
     void STDMETHODCALLTYPE VSSetConstantBuffers(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers) override;
     void STDMETHODCALLTYPE PSSetShaderResources(UINT StartSlot, UINT NumViews, ID3D11ShaderResourceView* const* ppShaderResourceViews) override;
@@ -132,5 +130,6 @@ public:
 
 private:
     ID3D11DeviceContext *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

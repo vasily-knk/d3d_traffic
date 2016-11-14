@@ -34,18 +34,15 @@ case class BaseHeaderGen(dir: String) {
     val pw = new PrintWriter(new File(filename))
 
     val baseName = genData.getBaseName(i.name)
-    val parentName = genData.getImplName(i.parentName)
 
     pw.write(
       s"""#pragma once
         |
-        |#include "${genData.getImplHeaderFilename(i.parentName)}"
-        |
         |struct $baseName
-        |    : $parentName
-        |    , ${i.name}
+        |    : ${i.name}
         |{
         |    explicit $baseName(${i.name} *impl);
+        |    virtual ~$baseName() {}
         |
         |    ${getBody(i)}
         |
@@ -58,6 +55,7 @@ case class BaseHeaderGen(dir: String) {
         |
         |private:
         |    ${i.name} *impl_;
+        |    unique_ptr<${i.parentName}> parent_base_;
         |};
       """.stripMargin)
 

@@ -3,9 +3,15 @@
 #include "base_ID3D11VideoDevice.h"
 #include "../wrappers.h"
 
+ID3D11VideoDevice *unwrap_inner(ID3D11VideoDevice *wrapper)
+{
+    auto *cast_wrapper = static_cast<base_ID3D11VideoDevice *>(wrapper);
+    return cast_wrapper->impl();
+}
+
 base_ID3D11VideoDevice::base_ID3D11VideoDevice(ID3D11VideoDevice *impl)
-    : impl_IUnknown(impl)
-    , impl_(impl)
+    : impl_(impl)
+    , parent_base_(create_wrapper<IUnknown>(impl))
 {
 
 }
@@ -151,17 +157,17 @@ HRESULT base_ID3D11VideoDevice::SetPrivateDataInterface(REFGUID guid, IUnknown c
 
 HRESULT base_ID3D11VideoDevice::QueryInterface(REFIID riid, void** ppvObject)
 {
-    return impl_IUnknown::QueryInterface(riid, ppvObject);
+    return parent_base_->QueryInterface(riid, ppvObject);
 }
      
 ULONG base_ID3D11VideoDevice::AddRef()
 {
-    return impl_IUnknown::AddRef();
+    return parent_base_->AddRef();
 }
      
 ULONG base_ID3D11VideoDevice::Release()
 {
-    return impl_IUnknown::Release();
+    return parent_base_->Release();
 }
      
 

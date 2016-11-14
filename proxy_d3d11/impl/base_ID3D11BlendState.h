@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11BlendState
-    : impl_ID3D11DeviceChild
-    , ID3D11BlendState
+    : ID3D11BlendState
 {
     explicit base_ID3D11BlendState(ID3D11BlendState *impl);
+    virtual ~base_ID3D11BlendState() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_BLEND_DESC* pDesc) override;
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11BlendState *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

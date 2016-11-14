@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11VideoDecoder
-    : impl_ID3D11DeviceChild
-    , ID3D11VideoDecoder
+    : ID3D11VideoDecoder
 {
     explicit base_ID3D11VideoDecoder(ID3D11VideoDecoder *impl);
+    virtual ~base_ID3D11VideoDecoder() {}
 
     HRESULT STDMETHODCALLTYPE GetCreationParameters(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig) override;
     HRESULT STDMETHODCALLTYPE GetDriverHandle(HANDLE* pDriverHandle) override;
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11VideoDecoder *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

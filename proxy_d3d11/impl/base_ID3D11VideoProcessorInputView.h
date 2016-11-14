@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11View.h"
-
 struct base_ID3D11VideoProcessorInputView
-    : impl_ID3D11View
-    , ID3D11VideoProcessorInputView
+    : ID3D11VideoProcessorInputView
 {
     explicit base_ID3D11VideoProcessorInputView(ID3D11VideoProcessorInputView *impl);
+    virtual ~base_ID3D11VideoProcessorInputView() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11VideoProcessorInputView *impl_;
+    unique_ptr<ID3D11View> parent_base_;
 };
       

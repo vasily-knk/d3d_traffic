@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11DeviceChild.h"
-
 struct base_ID3D11GeometryShader
-    : impl_ID3D11DeviceChild
-    , ID3D11GeometryShader
+    : ID3D11GeometryShader
 {
     explicit base_ID3D11GeometryShader(ID3D11GeometryShader *impl);
+    virtual ~base_ID3D11GeometryShader() {}
 
     
 
@@ -25,5 +23,6 @@ public:
 
 private:
     ID3D11GeometryShader *impl_;
+    unique_ptr<ID3D11DeviceChild> parent_base_;
 };
       

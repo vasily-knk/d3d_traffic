@@ -1,12 +1,10 @@
 #pragma once
 
-#include "impl_ID3D11View.h"
-
 struct base_ID3D11VideoDecoderOutputView
-    : impl_ID3D11View
-    , ID3D11VideoDecoderOutputView
+    : ID3D11VideoDecoderOutputView
 {
     explicit base_ID3D11VideoDecoderOutputView(ID3D11VideoDecoderOutputView *impl);
+    virtual ~base_ID3D11VideoDecoderOutputView() {}
 
     void STDMETHODCALLTYPE GetDesc(D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc) override;
 
@@ -26,5 +24,6 @@ public:
 
 private:
     ID3D11VideoDecoderOutputView *impl_;
+    unique_ptr<ID3D11View> parent_base_;
 };
       
