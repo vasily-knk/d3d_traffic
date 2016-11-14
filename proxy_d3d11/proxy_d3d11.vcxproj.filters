@@ -276,6 +276,9 @@
     <ClCompile Include="wrappers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="impl\guids_map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="wrappers.h">
@@ -540,6 +543,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="impl\impl_ROOT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="guids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

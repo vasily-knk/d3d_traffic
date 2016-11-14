@@ -9,6 +9,7 @@ case class AllGen(dir: String, generateImpl: Boolean) {
 
     new CreateHeaderGen(dir).generate(interfaces)
     // new WrapperGen(dir).generate(interfaces)
+    new GuidsGen(dir).generate(interfaces)
 
     if (generateImpl) {
       new ImplHeaderGen(dir).generate(interfaces)

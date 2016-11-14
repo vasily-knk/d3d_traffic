@@ -26,4 +26,17 @@ impl_IUnknown::impl_IUnknown(IUnknown *impl)
 {
 
 }
-      
+
+HRESULT impl_IUnknown::QueryInterface(const IID& riid, void** ppvObject)
+{
+    auto result = impl()->QueryInterface(riid, ppvObject);
+
+    if (*ppvObject != nullptr)
+    {
+        auto p = static_cast<IUnknown *>(*ppvObject);
+        auto wrapped = wrap_by_guid(p, riid);
+        *ppvObject = wrapped;
+    }
+
+    return result;
+}

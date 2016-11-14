@@ -4,6 +4,7 @@
 
 typedef std::function<IUnknown *(IUnknown *)> create_wrapper_f;
 typedef std::function<IUnknown *(IUnknown *)> unwrap_f;
+typedef std::function<IUnknown *(IUnknown *)> wrap_f;
 
 IUnknown *wrap_impl(IUnknown *impl, create_wrapper_f creator);
 IUnknown *unwrap_impl(IUnknown *wrapper, unwrap_f unwrapper);
@@ -66,3 +67,5 @@ bool check_magic(T const *ptr)
 {
     return true;
 }
+
+IUnknown *wrap_by_guid(IUnknown *impl, REFIID guid);

@@ -18,7 +18,7 @@ case class Arg(name: String, argType: Type, annotation: Option[Annotation], arra
 case class Method(name: String, retType: Type, args: List[Arg]) {
     override val toString = s"$retType $name(${args.mkString(", ")})"
 }
-case class Interface(name: String, parentName: String, methods: List[Method])
+case class Interface(name: String, parentName: String, methods: List[Method], guid: String)
 case class Annotation(name: String, expr: Option[String])
 
 
@@ -30,11 +30,12 @@ class ParserImpl extends JavaTokenParsers with InterfaceParser {
     import ParserImpl._
 
     def interfaces : Parser[List[Interface]] = rep(interface)
-    def interface  : Parser[Interface   ] = midl ~> ident ~ parent ~ ("{" ~> body <~ "}") ^^
-        { case name ~ parentName ~ methods => Interface(name, parentName, methods)}
+    def interface  : Parser[Interface   ] = midl ~ ident ~ parent ~ ("{" ~> body <~ "}") ^^
+        { case guid ~ name ~ parentName ~ methods => Interface(name, parentName, methods, guid)}
 
     def parent     : Parser[String      ] = ":" ~> "public" ~> ident
-    def midl       : Parser[String      ] = "MIDL_INTERFACE" ~> "(" ~> stringLiteral <~ ")"
+    def midl       : Parser[String      ] = "MIDL_INTERFACE" ~> "(" ~> stringLiteral <~ ")" ^^
+      {s => s.stripPrefix("\"").stripSuffix("\"")}
 
     def body       : Parser[List[Method]] = rep(publicBlock) ^^ { _.flatten }
     def publicBlock: Parser[List[Method]] = "public" ~> ":" ~> rep(method)

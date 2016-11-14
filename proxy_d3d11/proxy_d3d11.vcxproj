@@ -64,6 +64,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>proxy_d3d11.def</ModuleDefinitionFile>
+      <AdditionalDependencies>dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) "$(GameBinDir)d3d11.dll"
@@ -87,6 +88,7 @@ copy $(OutDir)$(TargetName).pdb "$(GameBinDir)d3d11.pdb"
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>proxy_d3d11.def</ModuleDefinitionFile>
+      <AdditionalDependencies>dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) "$(GameBinDir)d3d11.dll"
@@ -138,6 +140,7 @@ copy $(OutDir)$(TargetName).pdb "$(GameBinDir)d3d11.pdb"
     <ClCompile Include="impl\base_ID3D11VideoProcessorOutputView.cpp" />
     <ClCompile Include="impl\base_ID3D11View.cpp" />
     <ClCompile Include="impl\base_IUnknown.cpp" />
+    <ClCompile Include="impl\guids_map.cpp" />
     <ClCompile Include="impl\impl_ID3D11Asynchronous.cpp" />
     <ClCompile Include="impl\impl_ID3D11AuthenticatedChannel.cpp" />
     <ClCompile Include="impl\impl_ID3D11BlendState.cpp" />
@@ -188,6 +191,7 @@ copy $(OutDir)$(TargetName).pdb "$(GameBinDir)d3d11.pdb"
     <ClCompile Include="wrappers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="guids.h" />
     <ClInclude Include="impl\base_ID3D11Asynchronous.h" />
     <ClInclude Include="impl\base_ID3D11AuthenticatedChannel.h" />
     <ClInclude Include="impl\base_ID3D11BlendState.h" />

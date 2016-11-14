@@ -6,5 +6,7 @@ struct impl_IUnknown
     : base_IUnknown
 {
     explicit impl_IUnknown(IUnknown *impl);
+
+    HRESULT STDMETHODCALLTYPE QueryInterface(const IID& riid, void** ppvObject) override;
 };
       
