@@ -1,6 +1,6 @@
 #pragma once
 
-#include "impl/create_impl.h"
+#include "base/create_impl.h"
 
 struct ROOT
 {
@@ -87,3 +87,5 @@ bool check_magic(T const *ptr)
 }
 
 IUnknown *wrap_by_guid(IUnknown *impl, REFIID guid);
+IUnknown *rewrap_by_guid(IUnknown *impl, REFIID guid);
+create_wrapper_f creator_by_guid(REFIID guid);

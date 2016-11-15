@@ -6,7 +6,7 @@ import scala.compat.Platform.EOL
 /**
   * Created by vasya on 08.11.2016.
   */
-case class BaseCppGen(dir: String) {
+case class BaseCppGen(dir: String, impls: Set[String]) {
   val genData = new GenData(dir)
   var ifsNames: Set[String] = null
 
@@ -75,6 +75,16 @@ case class BaseCppGen(dir: String) {
     val baseName = genData.getBaseName(i.name)
     val parentName = genData.getImplName(i.parentName)
 
+    val createWrapperInner = if (!impls(i.name)) {
+      s"""${i.name} *create_wrapper_inner(${i.name} *impl)
+          |{
+          |    return new $baseName(impl);
+          |}
+       """.stripMargin
+    } else {
+      ""
+    }
+
     pw.println(
       s"""#include "stdafx.h"
         |
@@ -86,6 +96,8 @@ case class BaseCppGen(dir: String) {
         |    auto *cast_wrapper = static_cast<$baseName *>(wrapper);
         |    return cast_wrapper->impl();
         |}
+        |
+        |${createWrapperInner}
         |
         |$baseName::$baseName(${i.name} *impl)
         |    : impl_(impl)

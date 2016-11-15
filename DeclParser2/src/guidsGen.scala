@@ -16,17 +16,17 @@ case class GuidsGen(dir: String) {
           |#include "../guids.h"
           |#include "../wrappers.h"
           |
-          |IUnknown *wrap_by_guid(IUnknown *impl, REFIID guid)
+          |create_wrapper_f creator_by_guid(REFIID guid)
           |{
-          |    static const guid_map_t<wrap_f> mapping = {
+          |    static const guid_map_t<create_wrapper_f> mapping = {
           |        ${genLambdas(interfaces)}
           |    };
           |
           |    auto it = mapping.find(guid);
           |    if (it == mapping.end())
-          |        return impl;
+          |        return nullptr;
           |
-          |    return it->second(impl);
+          |    return it->second;
           |}
       """.stripMargin)
 
@@ -35,8 +35,8 @@ case class GuidsGen(dir: String) {
 
   private def genLambdas(interfaces: List[Interface]): String = {
     def genLambda(i: Interface): String = {
-      val lmbd = s"[](IUnknown *p) { return wrap(static_cast<${i.name} *>(p)); }"
-      s"{IID_${i.name}, $lmbd},"
+      val lmbd = s"[](IUnknown *impl) { return create_wrapper(static_cast<${i.name} *>(impl)); }"
+      s"{IID_${i.name}, $lmbd },"
     }
 
     interfaces

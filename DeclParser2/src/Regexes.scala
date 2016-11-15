@@ -22,12 +22,14 @@ object Regexes extends App {
     ifs
   }
 
-  val files = List("d3d10.h", "d3d11.h", "d3d11_1.h", "iunknown.h")
+  val impls = Set("IUnknown")
+
+  val files = List("d3d11.h", "d3d11_1.h", "iunknown.h")
   val ifs = files.flatMap(parseFile)
-  val dir = "../proxy_d3d11/impl"
+  val dir = "../proxy_d3d11/base"
   //val dir = "out_files"
 
   val generateImpls = true
 
-  new AllGen(dir, generateImpls).generate(ifs)
+  new AllGen(dir, impls).generate(ifs)
 }
