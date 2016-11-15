@@ -24,6 +24,7 @@ base_ID3DUserDefinedAnnotation::base_ID3DUserDefinedAnnotation(ID3DUserDefinedAn
 
 INT base_ID3DUserDefinedAnnotation::BeginEvent(LPCWSTR Name)
 {
+    log_method("ID3DUserDefinedAnnotation", "BeginEvent");
     
     auto result_ = impl_->BeginEvent(Name);
     
@@ -32,6 +33,7 @@ INT base_ID3DUserDefinedAnnotation::BeginEvent(LPCWSTR Name)
      
 INT base_ID3DUserDefinedAnnotation::EndEvent()
 {
+    log_method("ID3DUserDefinedAnnotation", "EndEvent");
     
     auto result_ = impl_->EndEvent();
     
@@ -40,6 +42,7 @@ INT base_ID3DUserDefinedAnnotation::EndEvent()
      
 void base_ID3DUserDefinedAnnotation::SetMarker(LPCWSTR Name)
 {
+    log_method("ID3DUserDefinedAnnotation", "SetMarker");
     
     impl_->SetMarker(Name);
     
@@ -48,6 +51,7 @@ void base_ID3DUserDefinedAnnotation::SetMarker(LPCWSTR Name)
      
 BOOL base_ID3DUserDefinedAnnotation::GetStatus()
 {
+    log_method("ID3DUserDefinedAnnotation", "GetStatus");
     
     auto result_ = impl_->GetStatus();
     

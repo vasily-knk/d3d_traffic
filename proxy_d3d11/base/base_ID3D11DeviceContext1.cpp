@@ -24,6 +24,7 @@ base_ID3D11DeviceContext1::base_ID3D11DeviceContext1(ID3D11DeviceContext1 *impl)
 
 void base_ID3D11DeviceContext1::CopySubresourceRegion1(ID3D11Resource* pDstResource, UINT DstSubresource, UINT DstX, UINT DstY, UINT DstZ, ID3D11Resource* pSrcResource, UINT SrcSubresource, D3D11_BOX const* pSrcBox, UINT CopyFlags)
 {
+    log_method("ID3D11DeviceContext1", "CopySubresourceRegion1");
     pDstResource = unwrap(pDstResource);
     pSrcResource = unwrap(pSrcResource);
     impl_->CopySubresourceRegion1(pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox, CopyFlags);
@@ -33,6 +34,7 @@ void base_ID3D11DeviceContext1::CopySubresourceRegion1(ID3D11Resource* pDstResou
      
 void base_ID3D11DeviceContext1::UpdateSubresource1(ID3D11Resource* pDstResource, UINT DstSubresource, D3D11_BOX const* pDstBox, void const* pSrcData, UINT SrcRowPitch, UINT SrcDepthPitch, UINT CopyFlags)
 {
+    log_method("ID3D11DeviceContext1", "UpdateSubresource1");
     pDstResource = unwrap(pDstResource);
     impl_->UpdateSubresource1(pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch, CopyFlags);
     
@@ -41,6 +43,7 @@ void base_ID3D11DeviceContext1::UpdateSubresource1(ID3D11Resource* pDstResource,
      
 void base_ID3D11DeviceContext1::DiscardResource(ID3D11Resource* pResource)
 {
+    log_method("ID3D11DeviceContext1", "DiscardResource");
     pResource = unwrap(pResource);
     impl_->DiscardResource(pResource);
     
@@ -49,6 +52,7 @@ void base_ID3D11DeviceContext1::DiscardResource(ID3D11Resource* pResource)
      
 void base_ID3D11DeviceContext1::DiscardView(ID3D11View* pResourceView)
 {
+    log_method("ID3D11DeviceContext1", "DiscardView");
     pResourceView = unwrap(pResourceView);
     impl_->DiscardView(pResourceView);
     
@@ -57,6 +61,7 @@ void base_ID3D11DeviceContext1::DiscardView(ID3D11View* pResourceView)
      
 void base_ID3D11DeviceContext1::VSSetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers, UINT const* pFirstConstant, UINT const* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "VSSetConstantBuffers1");
     auto ppConstantBuffers_unwrapped = unwrap_array(ppConstantBuffers, NumBuffers); ppConstantBuffers = ppConstantBuffers_unwrapped.data();
     impl_->VSSetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     
@@ -65,6 +70,7 @@ void base_ID3D11DeviceContext1::VSSetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::HSSetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers, UINT const* pFirstConstant, UINT const* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "HSSetConstantBuffers1");
     auto ppConstantBuffers_unwrapped = unwrap_array(ppConstantBuffers, NumBuffers); ppConstantBuffers = ppConstantBuffers_unwrapped.data();
     impl_->HSSetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     
@@ -73,6 +79,7 @@ void base_ID3D11DeviceContext1::HSSetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::DSSetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers, UINT const* pFirstConstant, UINT const* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "DSSetConstantBuffers1");
     auto ppConstantBuffers_unwrapped = unwrap_array(ppConstantBuffers, NumBuffers); ppConstantBuffers = ppConstantBuffers_unwrapped.data();
     impl_->DSSetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     
@@ -81,6 +88,7 @@ void base_ID3D11DeviceContext1::DSSetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::GSSetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers, UINT const* pFirstConstant, UINT const* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "GSSetConstantBuffers1");
     auto ppConstantBuffers_unwrapped = unwrap_array(ppConstantBuffers, NumBuffers); ppConstantBuffers = ppConstantBuffers_unwrapped.data();
     impl_->GSSetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     
@@ -89,6 +97,7 @@ void base_ID3D11DeviceContext1::GSSetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::PSSetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers, UINT const* pFirstConstant, UINT const* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "PSSetConstantBuffers1");
     auto ppConstantBuffers_unwrapped = unwrap_array(ppConstantBuffers, NumBuffers); ppConstantBuffers = ppConstantBuffers_unwrapped.data();
     impl_->PSSetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     
@@ -97,6 +106,7 @@ void base_ID3D11DeviceContext1::PSSetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::CSSetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppConstantBuffers, UINT const* pFirstConstant, UINT const* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "CSSetConstantBuffers1");
     auto ppConstantBuffers_unwrapped = unwrap_array(ppConstantBuffers, NumBuffers); ppConstantBuffers = ppConstantBuffers_unwrapped.data();
     impl_->CSSetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     
@@ -105,6 +115,7 @@ void base_ID3D11DeviceContext1::CSSetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::VSGetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer** ppConstantBuffers, UINT* pFirstConstant, UINT* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "VSGetConstantBuffers1");
     
     impl_->VSGetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     wrap_array(ppConstantBuffers, NumBuffers);
@@ -113,6 +124,7 @@ void base_ID3D11DeviceContext1::VSGetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::HSGetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer** ppConstantBuffers, UINT* pFirstConstant, UINT* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "HSGetConstantBuffers1");
     
     impl_->HSGetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     wrap_array(ppConstantBuffers, NumBuffers);
@@ -121,6 +133,7 @@ void base_ID3D11DeviceContext1::HSGetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::DSGetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer** ppConstantBuffers, UINT* pFirstConstant, UINT* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "DSGetConstantBuffers1");
     
     impl_->DSGetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     wrap_array(ppConstantBuffers, NumBuffers);
@@ -129,6 +142,7 @@ void base_ID3D11DeviceContext1::DSGetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::GSGetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer** ppConstantBuffers, UINT* pFirstConstant, UINT* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "GSGetConstantBuffers1");
     
     impl_->GSGetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     wrap_array(ppConstantBuffers, NumBuffers);
@@ -137,6 +151,7 @@ void base_ID3D11DeviceContext1::GSGetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::PSGetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer** ppConstantBuffers, UINT* pFirstConstant, UINT* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "PSGetConstantBuffers1");
     
     impl_->PSGetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     wrap_array(ppConstantBuffers, NumBuffers);
@@ -145,6 +160,7 @@ void base_ID3D11DeviceContext1::PSGetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::CSGetConstantBuffers1(UINT StartSlot, UINT NumBuffers, ID3D11Buffer** ppConstantBuffers, UINT* pFirstConstant, UINT* pNumConstants)
 {
+    log_method("ID3D11DeviceContext1", "CSGetConstantBuffers1");
     
     impl_->CSGetConstantBuffers1(StartSlot, NumBuffers, ppConstantBuffers, pFirstConstant, pNumConstants);
     wrap_array(ppConstantBuffers, NumBuffers);
@@ -153,6 +169,7 @@ void base_ID3D11DeviceContext1::CSGetConstantBuffers1(UINT StartSlot, UINT NumBu
      
 void base_ID3D11DeviceContext1::SwapDeviceContextState(ID3DDeviceContextState* pState, ID3DDeviceContextState** ppPreviousState)
 {
+    log_method("ID3D11DeviceContext1", "SwapDeviceContextState");
     pState = unwrap(pState);
     impl_->SwapDeviceContextState(pState, ppPreviousState);
     if (ppPreviousState != nullptr) *ppPreviousState = wrap(*ppPreviousState);
@@ -161,6 +178,7 @@ void base_ID3D11DeviceContext1::SwapDeviceContextState(ID3DDeviceContextState* p
      
 void base_ID3D11DeviceContext1::ClearView(ID3D11View* pView, FLOAT const Color[4], D3D11_RECT const* pRect, UINT NumRects)
 {
+    log_method("ID3D11DeviceContext1", "ClearView");
     pView = unwrap(pView);
     impl_->ClearView(pView, Color, pRect, NumRects);
     
@@ -169,6 +187,7 @@ void base_ID3D11DeviceContext1::ClearView(ID3D11View* pView, FLOAT const Color[4
      
 void base_ID3D11DeviceContext1::DiscardView1(ID3D11View* pResourceView, D3D11_RECT const* pRects, UINT NumRects)
 {
+    log_method("ID3D11DeviceContext1", "DiscardView1");
     pResourceView = unwrap(pResourceView);
     impl_->DiscardView1(pResourceView, pRects, NumRects);
     

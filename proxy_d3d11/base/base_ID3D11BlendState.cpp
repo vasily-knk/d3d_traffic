@@ -24,6 +24,7 @@ base_ID3D11BlendState::base_ID3D11BlendState(ID3D11BlendState *impl)
 
 void base_ID3D11BlendState::GetDesc(D3D11_BLEND_DESC* pDesc)
 {
+    log_method("ID3D11BlendState", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

@@ -24,6 +24,7 @@ base_ID3D11CryptoSession::base_ID3D11CryptoSession(ID3D11CryptoSession *impl)
 
 void base_ID3D11CryptoSession::GetCryptoType(GUID* pCryptoType)
 {
+    log_method("ID3D11CryptoSession", "GetCryptoType");
     
     impl_->GetCryptoType(pCryptoType);
     
@@ -32,6 +33,7 @@ void base_ID3D11CryptoSession::GetCryptoType(GUID* pCryptoType)
      
 void base_ID3D11CryptoSession::GetDecoderProfile(GUID* pDecoderProfile)
 {
+    log_method("ID3D11CryptoSession", "GetDecoderProfile");
     
     impl_->GetDecoderProfile(pDecoderProfile);
     
@@ -40,6 +42,7 @@ void base_ID3D11CryptoSession::GetDecoderProfile(GUID* pDecoderProfile)
      
 HRESULT base_ID3D11CryptoSession::GetCertificateSize(UINT* pCertificateSize)
 {
+    log_method("ID3D11CryptoSession", "GetCertificateSize");
     
     auto result_ = impl_->GetCertificateSize(pCertificateSize);
     
@@ -48,6 +51,7 @@ HRESULT base_ID3D11CryptoSession::GetCertificateSize(UINT* pCertificateSize)
      
 HRESULT base_ID3D11CryptoSession::GetCertificate(UINT CertificateSize, BYTE* pCertificate)
 {
+    log_method("ID3D11CryptoSession", "GetCertificate");
     
     auto result_ = impl_->GetCertificate(CertificateSize, pCertificate);
     
@@ -56,6 +60,7 @@ HRESULT base_ID3D11CryptoSession::GetCertificate(UINT CertificateSize, BYTE* pCe
      
 void base_ID3D11CryptoSession::GetCryptoSessionHandle(HANDLE* pCryptoSessionHandle)
 {
+    log_method("ID3D11CryptoSession", "GetCryptoSessionHandle");
     
     impl_->GetCryptoSessionHandle(pCryptoSessionHandle);
     

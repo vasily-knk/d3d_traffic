@@ -24,6 +24,7 @@ base_ID3D11Resource::base_ID3D11Resource(ID3D11Resource *impl)
 
 void base_ID3D11Resource::GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension)
 {
+    log_method("ID3D11Resource", "GetType");
     
     impl_->GetType(pResourceDimension);
     
@@ -32,6 +33,7 @@ void base_ID3D11Resource::GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension)
      
 void base_ID3D11Resource::SetEvictionPriority(UINT EvictionPriority)
 {
+    log_method("ID3D11Resource", "SetEvictionPriority");
     
     impl_->SetEvictionPriority(EvictionPriority);
     
@@ -40,6 +42,7 @@ void base_ID3D11Resource::SetEvictionPriority(UINT EvictionPriority)
      
 UINT base_ID3D11Resource::GetEvictionPriority()
 {
+    log_method("ID3D11Resource", "GetEvictionPriority");
     
     auto result_ = impl_->GetEvictionPriority();
     

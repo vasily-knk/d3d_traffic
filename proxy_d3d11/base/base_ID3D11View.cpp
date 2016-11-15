@@ -24,6 +24,7 @@ base_ID3D11View::base_ID3D11View(ID3D11View *impl)
 
 void base_ID3D11View::GetResource(ID3D11Resource** ppResource)
 {
+    log_method("ID3D11View", "GetResource");
     
     impl_->GetResource(ppResource);
     if (ppResource != nullptr) *ppResource = wrap(*ppResource);

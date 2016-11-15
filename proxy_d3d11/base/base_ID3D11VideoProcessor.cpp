@@ -24,6 +24,7 @@ base_ID3D11VideoProcessor::base_ID3D11VideoProcessor(ID3D11VideoProcessor *impl)
 
 void base_ID3D11VideoProcessor::GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc)
 {
+    log_method("ID3D11VideoProcessor", "GetContentDesc");
     
     impl_->GetContentDesc(pDesc);
     
@@ -32,6 +33,7 @@ void base_ID3D11VideoProcessor::GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DES
      
 void base_ID3D11VideoProcessor::GetRateConversionCaps(D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps)
 {
+    log_method("ID3D11VideoProcessor", "GetRateConversionCaps");
     
     impl_->GetRateConversionCaps(pCaps);
     

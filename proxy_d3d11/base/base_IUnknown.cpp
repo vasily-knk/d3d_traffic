@@ -20,6 +20,7 @@ base_IUnknown::base_IUnknown(IUnknown *impl)
 
 HRESULT base_IUnknown::QueryInterface(REFIID riid, void** ppvObject)
 {
+    log_method("IUnknown", "QueryInterface");
     
     auto result_ = impl_->QueryInterface(riid, ppvObject);
     
@@ -28,6 +29,7 @@ HRESULT base_IUnknown::QueryInterface(REFIID riid, void** ppvObject)
      
 ULONG base_IUnknown::AddRef()
 {
+    log_method("IUnknown", "AddRef");
     
     auto result_ = impl_->AddRef();
     
@@ -36,6 +38,7 @@ ULONG base_IUnknown::AddRef()
      
 ULONG base_IUnknown::Release()
 {
+    log_method("IUnknown", "Release");
     
     auto result_ = impl_->Release();
     

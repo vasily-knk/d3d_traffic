@@ -24,6 +24,7 @@ base_ID3D11Counter::base_ID3D11Counter(ID3D11Counter *impl)
 
 void base_ID3D11Counter::GetDesc(D3D11_COUNTER_DESC* pDesc)
 {
+    log_method("ID3D11Counter", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

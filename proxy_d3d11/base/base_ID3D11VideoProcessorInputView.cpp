@@ -24,6 +24,7 @@ base_ID3D11VideoProcessorInputView::base_ID3D11VideoProcessorInputView(ID3D11Vid
 
 void base_ID3D11VideoProcessorInputView::GetDesc(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc)
 {
+    log_method("ID3D11VideoProcessorInputView", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

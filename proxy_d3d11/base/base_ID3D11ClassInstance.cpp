@@ -24,6 +24,7 @@ base_ID3D11ClassInstance::base_ID3D11ClassInstance(ID3D11ClassInstance *impl)
 
 void base_ID3D11ClassInstance::GetClassLinkage(ID3D11ClassLinkage** ppLinkage)
 {
+    log_method("ID3D11ClassInstance", "GetClassLinkage");
     
     impl_->GetClassLinkage(ppLinkage);
     if (ppLinkage != nullptr) *ppLinkage = wrap(*ppLinkage);
@@ -32,6 +33,7 @@ void base_ID3D11ClassInstance::GetClassLinkage(ID3D11ClassLinkage** ppLinkage)
      
 void base_ID3D11ClassInstance::GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc)
 {
+    log_method("ID3D11ClassInstance", "GetDesc");
     
     impl_->GetDesc(pDesc);
     
@@ -40,6 +42,7 @@ void base_ID3D11ClassInstance::GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc)
      
 void base_ID3D11ClassInstance::GetInstanceName(LPSTR pInstanceName, SIZE_T* pBufferLength)
 {
+    log_method("ID3D11ClassInstance", "GetInstanceName");
     
     impl_->GetInstanceName(pInstanceName, pBufferLength);
     
@@ -48,6 +51,7 @@ void base_ID3D11ClassInstance::GetInstanceName(LPSTR pInstanceName, SIZE_T* pBuf
      
 void base_ID3D11ClassInstance::GetTypeName(LPSTR pTypeName, SIZE_T* pBufferLength)
 {
+    log_method("ID3D11ClassInstance", "GetTypeName");
     
     impl_->GetTypeName(pTypeName, pBufferLength);
     

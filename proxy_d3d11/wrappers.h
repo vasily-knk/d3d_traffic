@@ -89,3 +89,6 @@ bool check_magic(T const *ptr)
 IUnknown *wrap_by_guid(IUnknown *impl, REFIID guid);
 IUnknown *rewrap_by_guid(IUnknown *impl, REFIID guid);
 create_wrapper_f creator_by_guid(REFIID guid);
+
+void log_method(char const *interface_name, char const *method_name);
+void log_message(string const &str);

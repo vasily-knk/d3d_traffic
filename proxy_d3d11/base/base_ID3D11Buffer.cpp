@@ -24,6 +24,7 @@ base_ID3D11Buffer::base_ID3D11Buffer(ID3D11Buffer *impl)
 
 void base_ID3D11Buffer::GetDesc(D3D11_BUFFER_DESC* pDesc)
 {
+    log_method("ID3D11Buffer", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

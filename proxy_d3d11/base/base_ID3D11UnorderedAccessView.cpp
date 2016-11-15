@@ -24,6 +24,7 @@ base_ID3D11UnorderedAccessView::base_ID3D11UnorderedAccessView(ID3D11UnorderedAc
 
 void base_ID3D11UnorderedAccessView::GetDesc(D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc)
 {
+    log_method("ID3D11UnorderedAccessView", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

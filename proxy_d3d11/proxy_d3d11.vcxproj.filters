@@ -27,6 +27,12 @@
     <ClCompile Include="impl\impl_IUnknown.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="logging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="missing_guids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="base\base_ID3D11Asynchronous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

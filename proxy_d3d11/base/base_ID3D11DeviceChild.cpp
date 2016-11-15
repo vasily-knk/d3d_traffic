@@ -24,6 +24,7 @@ base_ID3D11DeviceChild::base_ID3D11DeviceChild(ID3D11DeviceChild *impl)
 
 void base_ID3D11DeviceChild::GetDevice(ID3D11Device** ppDevice)
 {
+    log_method("ID3D11DeviceChild", "GetDevice");
     
     impl_->GetDevice(ppDevice);
     if (ppDevice != nullptr) *ppDevice = wrap(*ppDevice);
@@ -32,6 +33,7 @@ void base_ID3D11DeviceChild::GetDevice(ID3D11Device** ppDevice)
      
 HRESULT base_ID3D11DeviceChild::GetPrivateData(REFGUID guid, UINT* pDataSize, void* pData)
 {
+    log_method("ID3D11DeviceChild", "GetPrivateData");
     
     auto result_ = impl_->GetPrivateData(guid, pDataSize, pData);
     
@@ -40,6 +42,7 @@ HRESULT base_ID3D11DeviceChild::GetPrivateData(REFGUID guid, UINT* pDataSize, vo
      
 HRESULT base_ID3D11DeviceChild::SetPrivateData(REFGUID guid, UINT DataSize, void const* pData)
 {
+    log_method("ID3D11DeviceChild", "SetPrivateData");
     
     auto result_ = impl_->SetPrivateData(guid, DataSize, pData);
     
@@ -48,6 +51,7 @@ HRESULT base_ID3D11DeviceChild::SetPrivateData(REFGUID guid, UINT DataSize, void
      
 HRESULT base_ID3D11DeviceChild::SetPrivateDataInterface(REFGUID guid, IUnknown const* pData)
 {
+    log_method("ID3D11DeviceChild", "SetPrivateDataInterface");
     pData = unwrap(pData);
     auto result_ = impl_->SetPrivateDataInterface(guid, pData);
     

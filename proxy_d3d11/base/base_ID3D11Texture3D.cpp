@@ -24,6 +24,7 @@ base_ID3D11Texture3D::base_ID3D11Texture3D(ID3D11Texture3D *impl)
 
 void base_ID3D11Texture3D::GetDesc(D3D11_TEXTURE3D_DESC* pDesc)
 {
+    log_method("ID3D11Texture3D", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

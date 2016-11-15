@@ -24,7 +24,14 @@ object Regexes extends App {
 
   val impls = Set("IUnknown")
 
-  val files = List("d3d11.h", "d3d11_1.h", "iunknown.h")
+  val files = List(
+    "d3d11.h",
+    "d3d11_1.h",
+//    "dxgi.h",
+//    "dxgi1_2.h",
+//    "dxgi1_3.h",
+    "iunknown.h")
+
   val ifs = files.flatMap(parseFile)
   val dir = "../proxy_d3d11/base"
   //val dir = "out_files"

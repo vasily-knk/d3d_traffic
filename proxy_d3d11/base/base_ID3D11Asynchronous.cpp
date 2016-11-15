@@ -24,6 +24,7 @@ base_ID3D11Asynchronous::base_ID3D11Asynchronous(ID3D11Asynchronous *impl)
 
 UINT base_ID3D11Asynchronous::GetDataSize()
 {
+    log_method("ID3D11Asynchronous", "GetDataSize");
     
     auto result_ = impl_->GetDataSize();
     

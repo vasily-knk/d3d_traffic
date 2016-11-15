@@ -24,6 +24,7 @@ base_ID3D11VideoDecoder::base_ID3D11VideoDecoder(ID3D11VideoDecoder *impl)
 
 HRESULT base_ID3D11VideoDecoder::GetCreationParameters(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig)
 {
+    log_method("ID3D11VideoDecoder", "GetCreationParameters");
     
     auto result_ = impl_->GetCreationParameters(pVideoDesc, pConfig);
     
@@ -32,6 +33,7 @@ HRESULT base_ID3D11VideoDecoder::GetCreationParameters(D3D11_VIDEO_DECODER_DESC*
      
 HRESULT base_ID3D11VideoDecoder::GetDriverHandle(HANDLE* pDriverHandle)
 {
+    log_method("ID3D11VideoDecoder", "GetDriverHandle");
     
     auto result_ = impl_->GetDriverHandle(pDriverHandle);
     

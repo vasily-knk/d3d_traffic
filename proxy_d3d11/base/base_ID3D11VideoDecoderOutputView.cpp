@@ -24,6 +24,7 @@ base_ID3D11VideoDecoderOutputView::base_ID3D11VideoDecoderOutputView(ID3D11Video
 
 void base_ID3D11VideoDecoderOutputView::GetDesc(D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc)
 {
+    log_method("ID3D11VideoDecoderOutputView", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

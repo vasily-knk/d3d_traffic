@@ -24,6 +24,7 @@ base_ID3D11AuthenticatedChannel::base_ID3D11AuthenticatedChannel(ID3D11Authentic
 
 HRESULT base_ID3D11AuthenticatedChannel::GetCertificateSize(UINT* pCertificateSize)
 {
+    log_method("ID3D11AuthenticatedChannel", "GetCertificateSize");
     
     auto result_ = impl_->GetCertificateSize(pCertificateSize);
     
@@ -32,6 +33,7 @@ HRESULT base_ID3D11AuthenticatedChannel::GetCertificateSize(UINT* pCertificateSi
      
 HRESULT base_ID3D11AuthenticatedChannel::GetCertificate(UINT CertificateSize, BYTE* pCertificate)
 {
+    log_method("ID3D11AuthenticatedChannel", "GetCertificate");
     
     auto result_ = impl_->GetCertificate(CertificateSize, pCertificate);
     
@@ -40,6 +42,7 @@ HRESULT base_ID3D11AuthenticatedChannel::GetCertificate(UINT CertificateSize, BY
      
 void base_ID3D11AuthenticatedChannel::GetChannelHandle(HANDLE* pChannelHandle)
 {
+    log_method("ID3D11AuthenticatedChannel", "GetChannelHandle");
     
     impl_->GetChannelHandle(pChannelHandle);
     

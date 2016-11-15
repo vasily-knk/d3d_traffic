@@ -24,6 +24,7 @@ base_ID3D11ShaderResourceView::base_ID3D11ShaderResourceView(ID3D11ShaderResourc
 
 void base_ID3D11ShaderResourceView::GetDesc(D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc)
 {
+    log_method("ID3D11ShaderResourceView", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

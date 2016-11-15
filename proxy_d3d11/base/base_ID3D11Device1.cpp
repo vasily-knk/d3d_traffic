@@ -24,6 +24,7 @@ base_ID3D11Device1::base_ID3D11Device1(ID3D11Device1 *impl)
 
 void base_ID3D11Device1::GetImmediateContext1(ID3D11DeviceContext1** ppImmediateContext)
 {
+    log_method("ID3D11Device1", "GetImmediateContext1");
     
     impl_->GetImmediateContext1(ppImmediateContext);
     if (ppImmediateContext != nullptr) *ppImmediateContext = wrap(*ppImmediateContext);
@@ -32,6 +33,7 @@ void base_ID3D11Device1::GetImmediateContext1(ID3D11DeviceContext1** ppImmediate
      
 HRESULT base_ID3D11Device1::CreateDeferredContext1(UINT ContextFlags, ID3D11DeviceContext1** ppDeferredContext)
 {
+    log_method("ID3D11Device1", "CreateDeferredContext1");
     
     auto result_ = impl_->CreateDeferredContext1(ContextFlags, ppDeferredContext);
     if (ppDeferredContext != nullptr) *ppDeferredContext = wrap(*ppDeferredContext);
@@ -40,6 +42,7 @@ HRESULT base_ID3D11Device1::CreateDeferredContext1(UINT ContextFlags, ID3D11Devi
      
 HRESULT base_ID3D11Device1::CreateBlendState1(D3D11_BLEND_DESC1 const* pBlendStateDesc, ID3D11BlendState1** ppBlendState)
 {
+    log_method("ID3D11Device1", "CreateBlendState1");
     
     auto result_ = impl_->CreateBlendState1(pBlendStateDesc, ppBlendState);
     if (ppBlendState != nullptr) *ppBlendState = wrap(*ppBlendState);
@@ -48,6 +51,7 @@ HRESULT base_ID3D11Device1::CreateBlendState1(D3D11_BLEND_DESC1 const* pBlendSta
      
 HRESULT base_ID3D11Device1::CreateRasterizerState1(D3D11_RASTERIZER_DESC1 const* pRasterizerDesc, ID3D11RasterizerState1** ppRasterizerState)
 {
+    log_method("ID3D11Device1", "CreateRasterizerState1");
     
     auto result_ = impl_->CreateRasterizerState1(pRasterizerDesc, ppRasterizerState);
     if (ppRasterizerState != nullptr) *ppRasterizerState = wrap(*ppRasterizerState);
@@ -56,6 +60,7 @@ HRESULT base_ID3D11Device1::CreateRasterizerState1(D3D11_RASTERIZER_DESC1 const*
      
 HRESULT base_ID3D11Device1::CreateDeviceContextState(UINT Flags, D3D_FEATURE_LEVEL const* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, REFIID EmulatedInterface, D3D_FEATURE_LEVEL* pChosenFeatureLevel, ID3DDeviceContextState** ppContextState)
 {
+    log_method("ID3D11Device1", "CreateDeviceContextState");
     
     auto result_ = impl_->CreateDeviceContextState(Flags, pFeatureLevels, FeatureLevels, SDKVersion, EmulatedInterface, pChosenFeatureLevel, ppContextState);
     if (ppContextState != nullptr) *ppContextState = wrap(*ppContextState);
@@ -64,6 +69,7 @@ HRESULT base_ID3D11Device1::CreateDeviceContextState(UINT Flags, D3D_FEATURE_LEV
      
 HRESULT base_ID3D11Device1::OpenSharedResource1(HANDLE hResource, REFIID returnedInterface, void** ppResource)
 {
+    log_method("ID3D11Device1", "OpenSharedResource1");
     
     auto result_ = impl_->OpenSharedResource1(hResource, returnedInterface, ppResource);
     
@@ -72,6 +78,7 @@ HRESULT base_ID3D11Device1::OpenSharedResource1(HANDLE hResource, REFIID returne
      
 HRESULT base_ID3D11Device1::OpenSharedResourceByName(LPCWSTR lpName, DWORD dwDesiredAccess, REFIID returnedInterface, void** ppResource)
 {
+    log_method("ID3D11Device1", "OpenSharedResourceByName");
     
     auto result_ = impl_->OpenSharedResourceByName(lpName, dwDesiredAccess, returnedInterface, ppResource);
     

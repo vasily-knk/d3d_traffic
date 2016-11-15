@@ -24,6 +24,7 @@ base_ID3D11DepthStencilView::base_ID3D11DepthStencilView(ID3D11DepthStencilView 
 
 void base_ID3D11DepthStencilView::GetDesc(D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc)
 {
+    log_method("ID3D11DepthStencilView", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

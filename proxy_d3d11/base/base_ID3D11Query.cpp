@@ -24,6 +24,7 @@ base_ID3D11Query::base_ID3D11Query(ID3D11Query *impl)
 
 void base_ID3D11Query::GetDesc(D3D11_QUERY_DESC* pDesc)
 {
+    log_method("ID3D11Query", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

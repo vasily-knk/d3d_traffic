@@ -24,6 +24,7 @@ base_ID3D11SamplerState::base_ID3D11SamplerState(ID3D11SamplerState *impl)
 
 void base_ID3D11SamplerState::GetDesc(D3D11_SAMPLER_DESC* pDesc)
 {
+    log_method("ID3D11SamplerState", "GetDesc");
     
     impl_->GetDesc(pDesc);
     

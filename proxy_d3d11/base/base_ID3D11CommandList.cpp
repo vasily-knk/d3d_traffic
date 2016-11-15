@@ -24,6 +24,7 @@ base_ID3D11CommandList::base_ID3D11CommandList(ID3D11CommandList *impl)
 
 UINT base_ID3D11CommandList::GetContextFlags()
 {
+    log_method("ID3D11CommandList", "GetContextFlags");
     
     auto result_ = impl_->GetContextFlags();
     

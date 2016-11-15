@@ -24,6 +24,7 @@ base_ID3D11VideoProcessorEnumerator::base_ID3D11VideoProcessorEnumerator(ID3D11V
 
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pContentDesc)
 {
+    log_method("ID3D11VideoProcessorEnumerator", "GetVideoProcessorContentDesc");
     
     auto result_ = impl_->GetVideoProcessorContentDesc(pContentDesc);
     
@@ -32,6 +33,7 @@ HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorContentDesc(D3D11_
      
 HRESULT base_ID3D11VideoProcessorEnumerator::CheckVideoProcessorFormat(DXGI_FORMAT Format, UINT* pFlags)
 {
+    log_method("ID3D11VideoProcessorEnumerator", "CheckVideoProcessorFormat");
     
     auto result_ = impl_->CheckVideoProcessorFormat(Format, pFlags);
     
@@ -40,6 +42,7 @@ HRESULT base_ID3D11VideoProcessorEnumerator::CheckVideoProcessorFormat(DXGI_FORM
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorCaps(D3D11_VIDEO_PROCESSOR_CAPS* pCaps)
 {
+    log_method("ID3D11VideoProcessorEnumerator", "GetVideoProcessorCaps");
     
     auto result_ = impl_->GetVideoProcessorCaps(pCaps);
     
@@ -48,6 +51,7 @@ HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorCaps(D3D11_VIDEO_P
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorRateConversionCaps(UINT TypeIndex, D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps)
 {
+    log_method("ID3D11VideoProcessorEnumerator", "GetVideoProcessorRateConversionCaps");
     
     auto result_ = impl_->GetVideoProcessorRateConversionCaps(TypeIndex, pCaps);
     
@@ -56,6 +60,7 @@ HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorRateConversionCaps
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorCustomRate(UINT TypeIndex, UINT CustomRateIndex, D3D11_VIDEO_PROCESSOR_CUSTOM_RATE* pRate)
 {
+    log_method("ID3D11VideoProcessorEnumerator", "GetVideoProcessorCustomRate");
     
     auto result_ = impl_->GetVideoProcessorCustomRate(TypeIndex, CustomRateIndex, pRate);
     
@@ -64,6 +69,7 @@ HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorCustomRate(UINT Ty
      
 HRESULT base_ID3D11VideoProcessorEnumerator::GetVideoProcessorFilterRange(D3D11_VIDEO_PROCESSOR_FILTER Filter, D3D11_VIDEO_PROCESSOR_FILTER_RANGE* pRange)
 {
+    log_method("ID3D11VideoProcessorEnumerator", "GetVideoProcessorFilterRange");
     
     auto result_ = impl_->GetVideoProcessorFilterRange(Filter, pRange);
     

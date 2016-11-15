@@ -33,6 +33,7 @@ case class BaseCppGen(dir: String, impls: Set[String]) {
 
     s"""${getMethodSig(i, m)}
        |{
+       |    log_method("${i.name}", "${m.name}");
        |    ${unwrapArgs(m.args)}
        |    ${storeResult}impl_->${m.name}($argNames);
        |    ${wrapArgs(m.args)}
@@ -137,11 +138,13 @@ case class BaseCppGen(dir: String, impls: Set[String]) {
         case Annotation("_Outptr_opt_result_maybenull_", None) => Wrap()
         case Annotation("_COM_Outptr_opt_", None) => Wrap()
         case Annotation("_Out_writes_opt_", Some(count)) => WrapArray(count)
+        case Annotation("_Out_writes_", Some(count)) => WrapArray(count)
       }
 
       // type *const *
       case List(Ptr(true), Ptr(false)) => ann match {
         case Annotation("_In_reads_opt_", Some(count)) => UnwrapArray(count)
+        case Annotation("_In_reads_", Some(count)) => UnwrapArray(count)
       }
 
       // type (const) *
@@ -149,6 +152,9 @@ case class BaseCppGen(dir: String, impls: Set[String]) {
         case Annotation("_In_opt_", None) => Unwrap()
         case Annotation("_In_", None) => Unwrap()
       }
+    }
+    case Arg(_, Type(_, _, ptrs), None, None) => ptrs match {
+      case List(Ptr(_)) => Unwrap()
     }
   }
 

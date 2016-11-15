@@ -24,6 +24,7 @@ base_ID3D11RasterizerState1::base_ID3D11RasterizerState1(ID3D11RasterizerState1 
 
 void base_ID3D11RasterizerState1::GetDesc1(D3D11_RASTERIZER_DESC1* pDesc)
 {
+    log_method("ID3D11RasterizerState1", "GetDesc1");
     
     impl_->GetDesc1(pDesc);
     

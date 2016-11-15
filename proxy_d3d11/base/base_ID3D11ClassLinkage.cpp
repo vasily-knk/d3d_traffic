@@ -24,6 +24,7 @@ base_ID3D11ClassLinkage::base_ID3D11ClassLinkage(ID3D11ClassLinkage *impl)
 
 HRESULT base_ID3D11ClassLinkage::GetClassInstance(LPCSTR pClassInstanceName, UINT InstanceIndex, ID3D11ClassInstance** ppInstance)
 {
+    log_method("ID3D11ClassLinkage", "GetClassInstance");
     
     auto result_ = impl_->GetClassInstance(pClassInstanceName, InstanceIndex, ppInstance);
     if (ppInstance != nullptr) *ppInstance = wrap(*ppInstance);
@@ -32,6 +33,7 @@ HRESULT base_ID3D11ClassLinkage::GetClassInstance(LPCSTR pClassInstanceName, UIN
      
 HRESULT base_ID3D11ClassLinkage::CreateClassInstance(LPCSTR pClassTypeName, UINT ConstantBufferOffset, UINT ConstantVectorOffset, UINT TextureOffset, UINT SamplerOffset, ID3D11ClassInstance** ppInstance)
 {
+    log_method("ID3D11ClassLinkage", "CreateClassInstance");
     
     auto result_ = impl_->CreateClassInstance(pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ppInstance);
     if (ppInstance != nullptr) *ppInstance = wrap(*ppInstance);

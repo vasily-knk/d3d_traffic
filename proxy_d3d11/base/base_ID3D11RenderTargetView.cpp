@@ -24,6 +24,7 @@ base_ID3D11RenderTargetView::base_ID3D11RenderTargetView(ID3D11RenderTargetView 
 
 void base_ID3D11RenderTargetView::GetDesc(D3D11_RENDER_TARGET_VIEW_DESC* pDesc)
 {
+    log_method("ID3D11RenderTargetView", "GetDesc");
     
     impl_->GetDesc(pDesc);
     
