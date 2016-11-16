@@ -13,4 +13,6 @@ using boost::optional;
 
 #include <boost/type_traits.hpp>
 
-#include <d3d11.h>
+
+#define WIN32_LEAN_AND_MEAN 
+#include "windows.h"

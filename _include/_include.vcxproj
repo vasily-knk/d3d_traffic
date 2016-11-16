@@ -11,7 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\dyn_lib.h" />
     <ClInclude Include="common\lib_wrapper.h" />
+    <ClInclude Include="d3d_wrappers\d3d_wrappers.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{34320BB9-1447-45B6-BEA0-BC7F21FBDA8E}</ProjectGuid>
