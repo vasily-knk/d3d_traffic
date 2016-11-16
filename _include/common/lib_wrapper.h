@@ -11,7 +11,9 @@ struct lib_wrapper
     
     explicit lib_wrapper(char const *filename)
         : lib_(LoadLibraryA(filename))
-    {}
+    {
+        int aaa = 5;
+    }
 
     template<typename Func>
     Func get_function(char const *name) const

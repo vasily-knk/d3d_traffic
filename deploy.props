@@ -6,7 +6,12 @@
     <GameExe>oriDE.exe</GameExe>
   </PropertyGroup>
   <PropertyGroup />
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) "$(GameBinDir)$(TargetFileName)"
+copy $(OutDir)$(TargetName).pdb "$(GameBinDir)$(TargetName).pdb"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="GameBinDir">
       <Value>$(GameBinDir)</Value>

@@ -14,7 +14,7 @@ HRESULT WINAPI D3D11CreateDevice(
     _Out_opt_ ID3D11DeviceContext** ppImmediateContext )
 {
     return impl_D3D11CreateDevice(pAdapter, DriverType, Software, Flags, pFeatureLevels, FeatureLevels, SDKVersion, ppDevice, pFeatureLevel, ppImmediateContext);
-}
+}                        
 
 HRESULT WINAPI D3D11CreateDeviceAndSwapChain(
     _In_opt_ IDXGIAdapter* pAdapter,
@@ -47,4 +47,13 @@ SIZE_T WINAPI D3D11CoreGetLayeredDeviceSize(const void *unknown0, DWORD unknown1
 HRESULT WINAPI D3D11CoreCreateLayeredDevice(const void *unknown0, DWORD unknown1, const void *unknown2, REFIID riid, void **ppvObj) 
 {
     return impl_D3D11CoreCreateLayeredDevice(unknown0, unknown1, unknown2, riid, ppvObj);
+}
+
+BOOL WINAPI DllMain(
+  _In_ HINSTANCE hinstDLL,
+  _In_ DWORD     fdwReason,
+  _In_ LPVOID    lpvReserved
+)
+{
+    int aaa = 5;                          
 }

@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_include", "_include\_inclu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "d3d_wrappers", "d3d_wrappers\d3d_wrappers.vcxproj", "{03DF27C7-88D5-4F43-A162-1540AC2843C1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dxgi", "dxgi\dxgi.vcxproj", "{F44F07D4-29C6-4189-B4E3-419234148273}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,6 +35,10 @@ Global
 		{03DF27C7-88D5-4F43-A162-1540AC2843C1}.Debug|Win32.Build.0 = Debug|Win32
 		{03DF27C7-88D5-4F43-A162-1540AC2843C1}.Release|Win32.ActiveCfg = Release|Win32
 		{03DF27C7-88D5-4F43-A162-1540AC2843C1}.Release|Win32.Build.0 = Release|Win32
+		{F44F07D4-29C6-4189-B4E3-419234148273}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F44F07D4-29C6-4189-B4E3-419234148273}.Debug|Win32.Build.0 = Debug|Win32
+		{F44F07D4-29C6-4189-B4E3-419234148273}.Release|Win32.ActiveCfg = Release|Win32
+		{F44F07D4-29C6-4189-B4E3-419234148273}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
