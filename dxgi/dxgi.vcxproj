@@ -37,6 +37,7 @@
     <Import Project="..\structure.props" />
     <Import Project="..\boost.props" />
     <Import Project="..\pch.props" />
+    <Import Project="deploy_filename.props" />
     <Import Project="..\deploy.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -44,6 +45,7 @@
     <Import Project="..\structure.props" />
     <Import Project="..\boost.props" />
     <Import Project="..\pch.props" />
+    <Import Project="deploy_filename.props" />
     <Import Project="..\deploy.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -64,6 +66,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

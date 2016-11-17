@@ -38,6 +38,7 @@
     <Import Project="..\structure.props" />
     <Import Project="..\boost.props" />
     <Import Project="..\pch.props" />
+    <Import Project="deployed_filename.props" />
     <Import Project="..\deploy.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -45,6 +46,7 @@
     <Import Project="..\structure.props" />
     <Import Project="..\boost.props" />
     <Import Project="..\pch.props" />
+    <Import Project="deployed_filename.props" />
     <Import Project="..\deploy.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -67,12 +69,7 @@
       <ModuleDefinitionFile>proxy_d3d11.def</ModuleDefinitionFile>
       <AdditionalDependencies>dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) "$(GameBinDir)d3d11.dll"
-copy $(OutDir)$(TargetName).pdb "$(GameBinDir)d3d11.pdb"
-
-</Command>
-    </PostBuildEvent>
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

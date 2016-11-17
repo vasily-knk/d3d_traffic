@@ -8,8 +8,8 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) "$(GameBinDir)$(TargetFileName)"
-copy $(OutDir)$(TargetName).pdb "$(GameBinDir)$(TargetName).pdb"</Command>
+      <Command>copy $(TargetPath) "$(GameBinDir)$(DeployedLibName)"
+copy $(OutDir)$(TargetName).pdb "$(GameBinDir)$(DeployedPDBName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
