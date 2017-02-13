@@ -62,6 +62,17 @@ struct impl_IUnknown
         return result;
     }
 
+    ULONG STDMETHODCALLTYPE AddRef() override
+    {
+        auto result = base_IUnknown::AddRef();
+        return result;
+    }
+
+    ULONG STDMETHODCALLTYPE Release() override
+    {
+        auto result = base_IUnknown::Release();
+        return result;    
+    }
 };
 
 IUnknown *create_wrapper_inner(IUnknown *impl)

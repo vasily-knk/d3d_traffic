@@ -22,7 +22,7 @@ HRESULT WINAPI D3D11CreateDeviceAndSwapChain(
     HMODULE Software,
     UINT Flags,
     _In_reads_opt_( FeatureLevels ) CONST D3D_FEATURE_LEVEL* pFeatureLevels,
-    UINT FeatureLevels,
+    UINT FeatureLevels,                             
     UINT SDKVersion,
     _In_opt_ CONST DXGI_SWAP_CHAIN_DESC* pSwapChainDesc,
     _Out_opt_ IDXGISwapChain** ppSwapChain,
@@ -56,4 +56,5 @@ BOOL WINAPI DllMain(
 )
 {
     int aaa = 5;                          
+    return TRUE;
 }

@@ -25,6 +25,9 @@ using boost::optional;
 #include <map>
 #include <set>
 
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
+
 #include <memory>
 using std::unique_ptr;
 using std::shared_ptr;

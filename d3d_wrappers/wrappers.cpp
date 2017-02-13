@@ -23,9 +23,9 @@ namespace
     typedef boost::unique_lock<mutex_t> unique_lock_t;
     typedef boost::upgrade_to_unique_lock<mutex_t> upgrade_to_unique_lock_t;
     
-    typedef std::map<IUnknown *, wrapper_data_t> impl2wrapper_map_t;
+    typedef boost::unordered_map<IUnknown *, wrapper_data_t> impl2wrapper_map_t;
     impl2wrapper_map_t g_impl2wrapper;
-    std::set<IUnknown *> g_wrappers;
+    boost::unordered_set<IUnknown *> g_wrappers;
     mutex_t g_mutex;
 
     wrapper_data_t &find_or_create_wrapper(IUnknown *impl, create_wrapper_f creator, upgrade_lock_t &read_lock)

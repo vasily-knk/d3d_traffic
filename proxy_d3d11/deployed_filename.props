@@ -2,8 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <DeployedLibName>_3d11.dll</DeployedLibName>
-    <DeployedPDBName>_3d11.pdb</DeployedPDBName>
+    <DeployedLibName>d3d11.dll</DeployedLibName>
+    <DeployedPDBName>d3d11.pdb</DeployedPDBName>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />

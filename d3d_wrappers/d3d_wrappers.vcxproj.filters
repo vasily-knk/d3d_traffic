@@ -180,6 +180,9 @@
     <ClCompile Include="d3d_wrappers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="impl\impl_ID3D11DeviceContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\base_ID3D11Asynchronous.h">

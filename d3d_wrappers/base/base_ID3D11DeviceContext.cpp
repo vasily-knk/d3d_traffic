@@ -9,10 +9,10 @@ ID3D11DeviceContext *unwrap_inner(ID3D11DeviceContext *wrapper)
     return cast_wrapper->impl();
 }
 
-ID3D11DeviceContext *create_wrapper_inner(ID3D11DeviceContext *impl)
-{
-    return new base_ID3D11DeviceContext(impl);
-}
+//ID3D11DeviceContext *create_wrapper_inner(ID3D11DeviceContext *impl)
+//{
+//    return new base_ID3D11DeviceContext(impl);
+//}
        
 
 base_ID3D11DeviceContext::base_ID3D11DeviceContext(ID3D11DeviceContext *impl)
@@ -272,6 +272,13 @@ void base_ID3D11DeviceContext::OMSetRenderTargets(UINT NumViews, ID3D11RenderTar
 void base_ID3D11DeviceContext::OMSetRenderTargetsAndUnorderedAccessViews(UINT NumRTVs, ID3D11RenderTargetView* const* ppRenderTargetViews, ID3D11DepthStencilView* pDepthStencilView, UINT UAVStartSlot, UINT NumUAVs, ID3D11UnorderedAccessView* const* ppUnorderedAccessViews, UINT const* pUAVInitialCounts)
 {
     log_method("ID3D11DeviceContext", "OMSetRenderTargetsAndUnorderedAccessViews");
+    
+    std::stringstream ss;
+    ss << "NumRTVs: " << NumRTVs;
+
+    log_message(ss.str());
+
+
     auto ppRenderTargetViews_unwrapped = unwrap_array(ppRenderTargetViews, NumRTVs); ppRenderTargetViews = ppRenderTargetViews_unwrapped.data();
     pDepthStencilView = unwrap(pDepthStencilView);
     auto ppUnorderedAccessViews_unwrapped = unwrap_array(ppUnorderedAccessViews, NumUAVs); ppUnorderedAccessViews = ppUnorderedAccessViews_unwrapped.data();
